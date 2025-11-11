@@ -1,0 +1,24 @@
+meta {
+  name: Eliminar post
+  type: http
+  seq: 6
+}
+
+delete {
+  url: https://jsonplaceholder.typicode.com/posts/1
+  body: none
+  auth: none
+}
+
+docs {
+  # DELETE /posts/:id
+  
+  Elimina un post por su ID (simulado).
+  
+  ## Parámetros
+  - id: 1 (en la URL)
+  
+  ## Respuesta esperada
+  - Status: 200 OK
+  - Objeto vacío {}
+}

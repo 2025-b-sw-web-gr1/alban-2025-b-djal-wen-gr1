@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introducción a HTML Básico y Elementos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .code-block {
+            background-color: #1e293b;
+            color: #e2e8f0;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .box-model-demo {
+            position: relative;
+            background-color: #fef3c7;
+            padding: 40px;
+            border: 20px solid #93c5fd;
+            margin: 40px;
+        }
+        
+        .box-content {
+            background-color: #86efac;
+            padding: 20px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .box-label {
+            position: absolute;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+        
+        .margin-label {
+            color: #f59e0b;
+            top: 10px;
+            left: 10px;
+        }
+        
+        .border-label {
+            color: #3b82f6;
+            top: 50px;
+            left: 50px;
+        }
+        
+        .padding-label {
+            color: #22c55e;
+            top: 90px;
+            left: 90px;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-gray-100 min-h-screen">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-blue-600 to-blue-800 text-white shadow-lg">
+        <div class="container mx-auto px-4 py-8">
+            <h1 class="text-4xl md:text-5xl font-bold text-center mb-2">Introducción a HTML Básico</h1>
+            <p class="text-center text-blue-100 text-lg">Elementos fundamentales y conceptos esenciales</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-12 max-w-6xl">
+        
+        <!-- Introducción -->
+        <section class="bg-white rounded-xl shadow-md p-8 mb-8">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4 border-b-4 border-blue-500 pb-2 inline-block">Introducción</h2>
+            <p class="text-gray-700 leading-relaxed text-lg">
+                HTML (HyperText Markup Language) es el lenguaje de marcado estándar para crear páginas web. 
+                Define la estructura y el contenido de una página mediante el uso de <strong>etiquetas</strong> y 
+                <strong>atributos</strong>. En este tutorial, exploraremos los conceptos básicos de HTML, 
+                incluyendo su estructura, elementos principales y cómo crear contenido web efectivo.
+            </p>
+        </section>
+
+        <!-- Conceptos Básicos -->
+        <section class="grid md:grid-cols-2 gap-6 mb-8">
+            
+            <!-- Etiquetas -->
+            <div class="bg-white rounded-xl shadow-md p-6 hover:shadow-xl transition-shadow duration-300">
+                <h3 class="text-2xl font-bold text-blue-700 mb-4">📌 Etiquetas HTML</h3>
+                <p class="text-gray-700 mb-4">
+                    Las etiquetas son la base de HTML. Se escriben entre corchetes angulares y generalmente 
+                    vienen en pares: una etiqueta de apertura y una de cierre.
+                </p>
+                <div class="code-block">
+                    &lt;p&gt;Este es un párrafo&lt;/p&gt;
+                </div>
+                <p class="text-gray-600 text-sm mt-3">
+                    <strong>Nota:</strong> Algunas etiquetas son auto-cerradas, como <code class="bg-gray-200 px-2 py-1 rounded">&lt;img /&gt;</code> 
+                    o <code class="bg-gray-200 px-2 py-1 rounded">&lt;br /&gt;</code>
+                </p>
+            </div>
+
+            <!-- Atributos -->
+            <div class="bg-white rounded-xl shadow-md p-6 hover:shadow-xl transition-shadow duration-300">
+                <h3 class="text-2xl font-bold text-blue-700 mb-4">🔧 Atributos</h3>
+                <p class="text-gray-700 mb-4">
+                    Los atributos proporcionan información adicional sobre los elementos HTML. 
+                    Se colocan dentro de la etiqueta de apertura.
+                </p>
+                <div class="code-block">
+                    &lt;a href="https://ejemplo.com" target="_blank"&gt;Enlace&lt;/a&gt;
+                </div>
+                <p class="text-gray-600 text-sm mt-3">
+                    <strong>Ejemplos comunes:</strong> <code class="bg-gray-200 px-2 py-1 rounded">id</code>, 
+                    <code class="bg-gray-200 px-2 py-1 rounded">class</code>, 
+                    <code class="bg-gray-200 px-2 py-1 rounded">src</code>, 
+                    <code class="bg-gray-200 px-2 py-1 rounded">alt</code>
+                </p>
+            </div>
+
+            <!-- Párrafos -->
+            <div class="bg-white rounded-xl shadow-md p-6 hover:shadow-xl transition-shadow duration-300">
+                <h3 class="text-2xl font-bold text-blue-700 mb-4">📝 Párrafos</h3>
+                <p class="text-gray-700 mb-4">
+                    Los párrafos se definen con la etiqueta <code class="bg-gray-200 px-2 py-1 rounded">&lt;p&gt;</code>. 
+                    Son elementos de bloque que añaden espacio automáticamente antes y después.
+                </p>
+                <div class="code-block">
+                    &lt;p&gt;Este es un párrafo de ejemplo.&lt;/p&gt;<br>
+                    &lt;p&gt;Este es otro párrafo.&lt;/p&gt;
+                </div>
+                <p class="text-gray-600 text-sm mt-3">
+                    Los navegadores añaden márgenes automáticos entre párrafos para mejorar la legibilidad.
+                </p>
+            </div>
+
+            <!-- Estructura del Documento -->
+            <div class="bg-white rounded-xl shadow-md p-6 hover:shadow-xl transition-shadow duration-300">
+                <h3 class="text-2xl font-bold text-blue-700 mb-4">🏗️ Estructura del Documento</h3>
+                <p class="text-gray-700 mb-4">
+                    Todo documento HTML debe seguir una estructura básica con elementos esenciales:
+                </p>
+                <div class="code-block text-sm">
+                    &lt;!DOCTYPE html&gt;<br>
+                    &lt;html lang="es"&gt;<br>
+                    &nbsp;&nbsp;&lt;head&gt;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;meta charset="UTF-8"&gt;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;title&gt;Título&lt;/title&gt;<br>
+                    &nbsp;&nbsp;&lt;/head&gt;<br>
+                    &nbsp;&nbsp;&lt;body&gt;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;Contenido aquí<br>
+                    &nbsp;&nbsp;&lt;/body&gt;<br>
+                    &lt;/html&gt;
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Jerarquía de Encabezados -->
+        <section class="bg-white rounded-xl shadow-md p-8 mb-8">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 border-b-4 border-blue-500 pb-2 inline-block">
+                Jerarquía de Encabezados HTML
+            </h2>
+            <p class="text-gray-700 mb-8 text-lg">
+                HTML proporciona seis niveles de encabezados, desde <code class="bg-gray-200 px-2 py-1 rounded">&lt;h1&gt;</code> 
+                hasta <code class="bg-gray-200 px-2 py-1 rounded">&lt;h6&gt;</code>, que ayudan a estructurar 
+                jerárquicamente el contenido de la página.
+            </p>
+
+            <!-- H1 -->
+            <div class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg p-6 mb-6 border-l-4 border-blue-600">
+                <h1 class="text-4xl font-bold text-gray-800 mb-3">Encabezado H1</h1>
+                <div class="code-block mb-3">
+                    &lt;h1&gt;Encabezado H1&lt;/h1&gt;
+                </div>
+                <p class="text-gray-700">
+                    <strong>Uso:</strong> El encabezado H1 es el más importante y debe usarse para el título 
+                    principal de la página. Idealmente, solo debe haber un H1 por página para una correcta 
+                    jerarquía y SEO.
+                </p>
+            </div>
+
+            <!-- H2 -->
+            <div class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg p-6 mb-6 border-l-4 border-blue-500">
+                <h2 class="text-3xl font-bold text-gray-800 mb-3">Encabezado H2</h2>
+                <div class="code-block mb-3">
+                    &lt;h2&gt;Encabezado H2&lt;/h2&gt;
+                </div>
+                <p class="text-gray-700">
+                    <strong>Uso:</strong> Los H2 se utilizan para las secciones principales del contenido. 
+                    Representan temas importantes que subdividen el contenido del H1. Son perfectos para 
+                    organizar capítulos o secciones temáticas.
+                </p>
+            </div>
+
+            <!-- H3 -->
+            <div class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg p-6 mb-6 border-l-4 border-blue-400">
+                <h3 class="text-2xl font-bold text-gray-800 mb-3">Encabezado H3</h3>
+                <div class="code-block mb-3">
+                    &lt;h3&gt;Encabezado H3&lt;/h3&gt;
+                </div>
+                <p class="text-gray-700">
+                    <strong>Uso:</strong> Los H3 son subsecciones de los H2. Se utilizan para dividir 
+                    el contenido de una sección en subtemas más específicos. Mantienen la estructura 
+                    jerárquica del documento.
+                </p>
+            </div>
+
+            <!-- H4 -->
+            <div class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg p-6 mb-6 border-l-4 border-blue-300">
+                <h4 class="text-xl font-bold text-gray-800 mb-3">Encabezado H4</h4>
+                <div class="code-block mb-3">
+                    &lt;h4&gt;Encabezado H4&lt;/h4&gt;
+                </div>
+                <p class="text-gray-700">
+                    <strong>Uso:</strong> Los H4 representan subsecciones de los H3. Se emplean cuando 
+                    necesitas mayor granularidad en la organización del contenido, como en documentación 
+                    técnica o artículos extensos.
+                </p>
+            </div>
+
+            <!-- H5 -->
+            <div class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg p-6 mb-6 border-l-4 border-blue-200">
+                <h5 class="text-lg font-bold text-gray-800 mb-3">Encabezado H5</h5>
+                <div class="code-block mb-3">
+                    &lt;h5&gt;Encabezado H5&lt;/h5&gt;
+                </div>
+                <p class="text-gray-700">
+                    <strong>Uso:</strong> Los H5 son encabezados de nivel más bajo, útiles para detalles 
+                    específicos dentro de subsecciones. Se usan menos frecuentemente, pero son valiosos 
+                    en documentos muy detallados.
+                </p>
+            </div>
+
+            <!-- H6 -->
+            <div class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg p-6 border-l-4 border-blue-100">
+                <h6 class="text-base font-bold text-gray-800 mb-3">Encabezado H6</h6>
+                <div class="code-block mb-3">
+                    &lt;h6&gt;Encabezado H6&lt;/h6&gt;
+                </div>
+                <p class="text-gray-700">
+                    <strong>Uso:</strong> El H6 es el nivel más bajo de encabezado. Se utiliza raramente 
+                    y solo para los detalles más específicos o notas dentro de subsecciones muy pequeñas. 
+                    Mantiene la consistencia jerárquica del documento.
+                </p>
+            </div>
+
+            <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mt-6">
+                <p class="text-gray-800">
+                    <strong>💡 Consejo:</strong> Respeta siempre la jerarquía de encabezados. No saltes 
+                    niveles (por ejemplo, de H2 a H4) ya que esto afecta la accesibilidad y el SEO de tu 
+                    página web.
+                </p>
+            </div>
+        </section>
+
+        <!-- Modelo de Caja CSS -->
+        <section class="bg-white rounded-xl shadow-md p-8 mb-8">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 border-b-4 border-blue-500 pb-2 inline-block">
+                Modelo de Caja (Box Model) de CSS
+            </h2>
+            <p class="text-gray-700 mb-6 text-lg">
+                El Modelo de Caja es un concepto fundamental en CSS que define cómo se calcula el espacio 
+                que ocupa cada elemento en la página. Cada elemento HTML es tratado como una "caja" rectangular 
+                que consta de cuatro áreas principales:
+            </p>
+
+            <!-- Explicación de conceptos -->
+            <div class="grid md:grid-cols-3 gap-6 mb-8">
+                <div class="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-6 border-2 border-yellow-300">
+                    <h3 class="text-xl font-bold text-yellow-800 mb-3">📏 Margin (Margen)</h3>
+                    <p class="text-gray-700">
+                        El <strong>margen</strong> es el espacio exterior transparente alrededor del borde 
+                        del elemento. Separa el elemento de otros elementos adyacentes. No tiene color de fondo.
+                    </p>
+                    <div class="code-block mt-3 text-sm">
+                        margin: 20px;
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6 border-2 border-blue-300">
+                    <h3 class="text-xl font-bold text-blue-800 mb-3">🔲 Border (Borde)</h3>
+                    <p class="text-gray-700">
+                        El <strong>borde</strong> rodea el padding y el contenido. Puede tener color, grosor 
+                        y estilo (sólido, punteado, etc.). Es visible y afecta el tamaño total del elemento.
+                    </p>
+                    <div class="code-block mt-3 text-sm">
+                        border: 2px solid #333;
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-6 border-2 border-green-300">
+                    <h3 class="text-xl font-bold text-green-800 mb-3">📦 Padding (Relleno)</h3>
+                    <p class="text-gray-700">
+                        El <strong>padding</strong> es el espacio interior entre el contenido y el borde. 
+                        Hereda el color de fondo del elemento y crea espacio respiratorio interno.
+                    </p>
+                    <div class="code-block mt-3 text-sm">
+                        padding: 15px;
+                    </div>
+                </div>
+            </div>
+
+            <!-- Demostración Visual -->
+            <div class="bg-gray-50 rounded-lg p-8">
+                <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">
+                    Demostración Visual del Modelo de Caja
+                </h3>
+                
+                <div class="flex justify-center mb-8">
+                    <div class="relative bg-orange-100 rounded-lg" style="padding: 40px; border: 20px solid #93c5fd; margin: 40px;">
+                        <!-- Etiquetas -->
+                        <div class="absolute top-2 left-2 bg-orange-500 text-white px-3 py-1 rounded text-sm font-bold shadow">
+                            Margin (40px)
+                        </div>
+                        <div class="absolute top-16 left-16 bg-blue-500 text-white px-3 py-1 rounded text-sm font-bold shadow">
+                            Border (20px)
+                        </div>
+                        <div class="absolute top-32 left-32 bg-green-500 text-white px-3 py-1 rounded text-sm font-bold shadow">
+                            Padding (40px)
+                        </div>
+                        
+                        <!-- Contenido -->
+                        <div class="bg-green-200 p-8 rounded text-center">
+                            <div class="bg-white p-6 rounded-lg shadow-inner">
+                                <p class="text-gray-800 font-bold text-lg mb-2">CONTENIDO</p>
+                                <p class="text-gray-600 text-sm">Esta es el área del contenido del elemento</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Código de ejemplo -->
+                <div class="bg-white rounded-lg p-6 shadow-inner">
+                    <h4 class="text-lg font-bold text-gray-800 mb-3">Código CSS del ejemplo:</h4>
+                    <div class="code-block">
+                        .ejemplo {<br>
+                        &nbsp;&nbsp;/* Contenido: ancho y alto del elemento */<br>
+                        &nbsp;&nbsp;width: 200px;<br>
+                        &nbsp;&nbsp;height: 100px;<br>
+                        &nbsp;&nbsp;<br>
+                        &nbsp;&nbsp;/* Padding: espacio interno */<br>
+                        &nbsp;&nbsp;padding: 40px;<br>
+                        &nbsp;&nbsp;<br>
+                        &nbsp;&nbsp;/* Border: borde del elemento */<br>
+                        &nbsp;&nbsp;border: 20px solid #93c5fd;<br>
+                        &nbsp;&nbsp;<br>
+                        &nbsp;&nbsp;/* Margin: espacio externo */<br>
+                        &nbsp;&nbsp;margin: 40px;<br>
+                        &nbsp;&nbsp;<br>
+                        &nbsp;&nbsp;/* Colores para visualización */<br>
+                        &nbsp;&nbsp;background-color: #86efac;<br>
+                        }
+                    </div>
+                </div>
+
+                <!-- Cálculo del tamaño -->
+                <div class="bg-blue-50 border-l-4 border-blue-500 p-6 mt-6 rounded">
+                    <h4 class="text-lg font-bold text-blue-900 mb-3">📐 Cálculo del Tamaño Total:</h4>
+                    <p class="text-gray-700 mb-3">
+                        El tamaño total que ocupa un elemento se calcula sumando:
+                    </p>
+                    <div class="bg-white rounded p-4 font-mono text-sm">
+                        <p class="mb-2"><strong>Ancho Total</strong> = margin-left + border-left + padding-left + width + padding-right + border-right + margin-right</p>
+                        <p><strong>Alto Total</strong> = margin-top + border-top + padding-top + height + padding-bottom + border-bottom + margin-bottom</p>
+                    </div>
+                    <p class="text-gray-600 mt-3 text-sm">
+                        <strong>Nota:</strong> Con <code class="bg-gray-200 px-2 py-1 rounded">box-sizing: border-box;</code>, 
+                        el padding y border se incluyen dentro del ancho y alto especificados.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recursos adicionales -->
+        <section class="bg-gradient-to-r from-blue-600 to-blue-800 rounded-xl shadow-md p-8 text-white">
+            <h2 class="text-3xl font-bold mb-4">🚀 Continúa Aprendiendo</h2>
+            <p class="text-blue-100 text-lg mb-6">
+                Ahora que conoces los fundamentos de HTML y el Modelo de Caja de CSS, estás listo para 
+                crear páginas web más complejas. Sigue practicando y experimentando con diferentes 
+                elementos y estilos.
+            </p>
+            <div class="grid md:grid-cols-3 gap-4">
+                <div class="bg-white bg-opacity-10 rounded-lg p-4">
+                    <h3 class="font-bold mb-2">📚 Práctica</h3>
+                    <p class="text-sm text-blue-100">Crea tus propias páginas HTML experimentando con los conceptos aprendidos.</p>
+                </div>
+                <div class="bg-white bg-opacity-10 rounded-lg p-4">
+                    <h3 class="font-bold mb-2">🔍 Investiga</h3>
+                    <p class="text-sm text-blue-100">Explora más elementos HTML y propiedades CSS para expandir tus conocimientos.</p>
+                </div>
+                <div class="bg-white bg-opacity-10 rounded-lg p-4">
+                    <h3 class="font-bold mb-2">💡 Experimenta</h3>
+                    <p class="text-sm text-blue-100">Usa las herramientas de desarrollador del navegador para inspeccionar y modificar elementos.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-gray-300">© 2025 Tutorial de HTML Básico | Creado con HTML, Tailwind CSS y dedicación</p>
+            <p class="text-gray-400 text-sm mt-2">Aprende, practica y crea cosas increíbles en la web 🌐</p>
+        </div>
+    </footer>
+
+</body>
+</html>

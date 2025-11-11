@@ -1,0 +1,31 @@
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e293b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#334155;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#grad2)"/>
+  
+  <!-- Código de fondo -->
+  <text x="50" y="100" font-family="monospace" font-size="16" fill="#475569" opacity="0.5">
+    <tspan x="50" dy="0">const project = {</tspan>
+    <tspan x="50" dy="25">  title: "Proyecto",</tspan>
+    <tspan x="50" dy="25">  tech: ["HTML", "CSS", "JS"],</tspan>
+    <tspan x="50" dy="25">  status: "completed"</tspan>
+    <tspan x="50" dy="25">};</tspan>
+  </text>
+  
+  <!-- Icono central -->
+  <rect x="325" y="225" width="150" height="150" rx="15" fill="#6366f1" opacity="0.8"/>
+  <path d="M 375 275 L 425 275 L 425 325 L 375 325 Z" fill="#ffffff"/>
+  <circle cx="385" cy="285" r="3" fill="#6366f1"/>
+  <circle cx="400" cy="285" r="3" fill="#6366f1"/>
+  <circle cx="415" cy="285" r="3" fill="#6366f1"/>
+  <rect x="380" y="295" width="35" height="3" fill="#6366f1"/>
+  <rect x="380" y="303" width="28" height="3" fill="#6366f1"/>
+  <rect x="380" y="311" width="32" height="3" fill="#6366f1"/>
+  
+  <text x="400" y="450" font-family="Arial, sans-serif" font-size="32" fill="#94a3b8" text-anchor="middle" font-weight="bold">PROJECT IMAGE</text>
+  <text x="400" y="485" font-family="Arial, sans-serif" font-size="18" fill="#64748b" text-anchor="middle">Imagen de proyecto</text>
+</svg>

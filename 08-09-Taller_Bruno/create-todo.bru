@@ -1,0 +1,42 @@
+meta {
+  name: Crear nueva tarea
+  type: http
+  seq: 17
+}
+
+post {
+  url: https://jsonplaceholder.typicode.com/todos
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "title": "Buy milk",
+    "completed": false,
+    "userId": 1
+  }
+}
+
+docs {
+  # POST /todos
+  
+  Crea una nueva tarea (simulado).
+  
+  ## Body (JSON)
+  ```json
+  {
+    "title": "Buy milk",
+    "completed": false,
+    "userId": 1
+  }
+  ```
+  
+  ## Respuesta esperada
+  - Status: 201 Created
+  - Tarea creada con id: 201
+}

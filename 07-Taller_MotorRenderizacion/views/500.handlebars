@@ -1,0 +1,35 @@
+{{!-- Vista: Error 500 --}}
+
+<section class="error-section">
+    <div class="container">
+        <div class="error-content">
+            <div class="error-code">500</div>
+            <h1 class="error-title">Error del Servidor</h1>
+            <p class="error-description">
+                Oops! Algo salió mal en nuestro servidor. Estamos trabajando para solucionarlo.
+            </p>
+            
+            {{#if error.message}}
+            <div class="error-details">
+                <h3>Detalles del error:</h3>
+                <pre>{{error.message}}</pre>
+            </div>
+            {{/if}}
+            
+            <div class="error-actions">
+                <a href="/" class="btn btn-primary">
+                    <i class="fas fa-home"></i>
+                    Volver al Inicio
+                </a>
+                <button onclick="window.location.reload()" class="btn btn-secondary">
+                    <i class="fas fa-redo"></i>
+                    Reintentar
+                </button>
+            </div>
+            
+            <div class="error-illustration">
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+        </div>
+    </div>
+</section>

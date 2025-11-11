@@ -1,0 +1,42 @@
+{{!-- Partial: Tarjeta de proyecto --}}
+<article class="project-card">
+    {{#if featured}}
+    <div class="project-badge">
+        <i class="fas fa-star"></i>
+        Destacado
+    </div>
+    {{/if}}
+    
+    <div class="project-image">
+        <img src="{{image}}" alt="{{title}}" onerror="this.src='/images/placeholder.jpg'">
+        <div class="project-overlay">
+            <a href="/project/{{id}}" class="btn-overlay">Ver Detalles</a>
+        </div>
+    </div>
+    
+    <div class="project-content">
+        <h3 class="project-title">{{title}}</h3>
+        <p class="project-description">{{description}}</p>
+        
+        <div class="project-technologies">
+            {{#each technologies}}
+            <span class="tech-tag">{{this}}</span>
+            {{/each}}
+        </div>
+        
+        <div class="project-footer">
+            <span class="project-date">
+                <i class="fas fa-calendar"></i>
+                {{formatDate date}}
+            </span>
+            <div class="project-links">
+                <a href="{{githubUrl}}" target="_blank" class="project-link" title="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="{{liveUrl}}" target="_blank" class="project-link" title="Demo en vivo">
+                    <i class="fas fa-external-link-alt"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</article>

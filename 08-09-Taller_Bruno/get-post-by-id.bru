@@ -1,0 +1,28 @@
+meta {
+  name: Obtener post por ID
+  type: http
+  seq: 2
+}
+
+get {
+  url: https://jsonplaceholder.typicode.com/posts/1
+  body: none
+  auth: none
+}
+
+docs {
+  # GET /posts/:id
+  
+  Obtiene un post específico por su ID.
+  
+  ## Parámetros
+  - id: 1 (en la URL)
+  
+  ## Respuesta esperada
+  - Status: 200 OK
+  - Objeto con:
+    - id: 1
+    - title: string
+    - body: string
+    - userId: number
+}

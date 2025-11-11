@@ -1,0 +1,96 @@
+/* ============================================
+   TEXT-SNIPPET.CSS - Estilos cargados como texto
+   ============================================ */
+
+/* Este archivo se descarga con Fetch API y se inyecta como <style> */
+
+.fetch-loaded-box {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: white;
+    padding: 25px;
+    border-radius: 12px;
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: 700;
+    box-shadow: 0 15px 40px rgba(245, 87, 108, 0.4);
+    position: relative;
+    overflow: hidden;
+    animation: slideInFromBottom 0.6s ease-out;
+}
+
+.fetch-loaded-box::before {
+    content: "🚀 ";
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 10px;
+    animation: bounce 1s ease-in-out infinite;
+}
+
+.fetch-loaded-box::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    animation: rotate 10s linear infinite;
+}
+
+@keyframes slideInFromBottom {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Mensaje de éxito */
+.fetch-success-message {
+    background: #d4edda;
+    border: 2px solid #28a745;
+    color: #155724;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 15px;
+    text-align: center;
+    font-weight: 600;
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.fetch-success-message::before {
+    content: "✓ ";
+    color: #28a745;
+    font-size: 1.5rem;
+    margin-right: 5px;
+}

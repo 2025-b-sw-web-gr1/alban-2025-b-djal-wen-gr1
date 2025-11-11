@@ -1,0 +1,126 @@
+/* ============================================
+   THEME-DARK.CSS - Tema Oscuro (Carga Dinámica)
+   ============================================ */
+
+/* Este archivo se carga dinámicamente con JavaScript al hacer clic */
+
+/* Tema oscuro global */
+body.dark-theme {
+    background: linear-gradient(135deg, #232526 0%, #414345 100%) !important;
+}
+
+body.dark-theme .container {
+    background-color: #2c3e50 !important;
+    color: #ecf0f1 !important;
+}
+
+body.dark-theme header {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%) !important;
+}
+
+body.dark-theme .demo-section {
+    background: #34495e !important;
+    border-left-color: #3498db !important;
+    color: #ecf0f1 !important;
+}
+
+body.dark-theme .demo-section h2 {
+    color: #3498db !important;
+}
+
+body.dark-theme .demo-box {
+    background: #2c3e50 !important;
+    border-color: #7f8c8d !important;
+    color: #ecf0f1 !important;
+}
+
+body.dark-theme .explanation {
+    background: #2c3e50 !important;
+    border-left-color: #3498db !important;
+}
+
+body.dark-theme .explanation h3 {
+    color: #3498db !important;
+}
+
+body.dark-theme .explanation p {
+    color: #bdc3c7 !important;
+}
+
+body.dark-theme .explanation code {
+    background: #34495e !important;
+    color: #e74c3c !important;
+}
+
+body.dark-theme .alert-info {
+    background: #34495e !important;
+    color: #5dade2 !important;
+    border-left-color: #3498db !important;
+}
+
+body.dark-theme .alert-warning {
+    background: #34495e !important;
+    color: #f39c12 !important;
+    border-left-color: #e67e22 !important;
+}
+
+body.dark-theme .alert-success {
+    background: #34495e !important;
+    color: #2ecc71 !important;
+    border-left-color: #27ae60 !important;
+}
+
+body.dark-theme .code-block {
+    background: #1a1a1a !important;
+    color: #7bed9f !important;
+}
+
+body.dark-theme footer {
+    background: #1a1a1a !important;
+}
+
+body.dark-theme .grid-item {
+    background: #2c3e50 !important;
+    border-color: #7f8c8d !important;
+    color: #ecf0f1 !important;
+}
+
+body.dark-theme .badge {
+    opacity: 0.9;
+}
+
+/* Animación de transición al tema oscuro */
+body.dark-theme * {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Indicador de tema activo */
+.dark-theme-indicator {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #2ecc71;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: 600;
+    box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3);
+    z-index: 1000;
+    animation: slideInFromRight 0.5s ease-out;
+}
+
+@keyframes slideInFromRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.dark-theme-indicator::before {
+    content: "🌙 ";
+    font-size: 1.2rem;
+}

@@ -1,0 +1,99 @@
+{{!-- Vista: Detalle de proyecto --}}
+
+<section class="project-detail">
+    <div class="container">
+        
+        {{!-- Breadcrumb --}}
+        <nav class="breadcrumb">
+            <a href="/">Inicio</a>
+            <span>/</span>
+            <a href="/projects">Proyectos</a>
+            <span>/</span>
+            <span>{{project.title}}</span>
+        </nav>
+        
+        {{!-- Header del proyecto --}}
+        <div class="project-header">
+            <div class="project-header-content">
+                <h1 class="project-title-large">{{project.title}}</h1>
+                
+                <div class="project-meta">
+                    <span class="meta-item">
+                        <i class="fas fa-calendar"></i>
+                        {{formatDate project.date}}
+                    </span>
+                    <span class="meta-item">
+                        <i class="fas fa-star"></i>
+                        {{stars project.rating}}
+                    </span>
+                </div>
+                
+                <p class="project-description-large">{{project.description}}</p>
+                
+                <div class="project-actions">
+                    <a href="{{project.githubUrl}}" target="_blank" class="btn btn-primary">
+                        <i class="fab fa-github"></i>
+                        Ver Código
+                    </a>
+                    <a href="{{project.liveUrl}}" target="_blank" class="btn btn-secondary">
+                        <i class="fas fa-external-link-alt"></i>
+                        Demo en Vivo
+                    </a>
+                </div>
+            </div>
+            
+            <div class="project-header-image">
+                <img src="{{project.image}}" alt="{{project.title}}" onerror="this.src='/images/placeholder.jpg'">
+            </div>
+        </div>
+        
+        {{!-- Tecnologías utilizadas --}}
+        <div class="project-technologies-section">
+            <h2>Tecnologías Utilizadas</h2>
+            <div class="technologies-grid">
+                {{#each project.technologies}}
+                <div class="technology-badge">
+                    <i class="fas fa-check-circle"></i>
+                    {{this}}
+                </div>
+                {{/each}}
+            </div>
+        </div>
+        
+        {{!-- Características --}}
+        <div class="project-features">
+            <h2>Características Principales</h2>
+            <ul class="features-list">
+                <li>
+                    <i class="fas fa-check"></i>
+                    Diseño responsive y adaptable a todos los dispositivos
+                </li>
+                <li>
+                    <i class="fas fa-check"></i>
+                    Interfaz de usuario intuitiva y moderna
+                </li>
+                <li>
+                    <i class="fas fa-check"></i>
+                    Optimizado para rendimiento y velocidad
+                </li>
+                <li>
+                    <i class="fas fa-check"></i>
+                    Código limpio y bien documentado
+                </li>
+            </ul>
+        </div>
+        
+        {{!-- Proyectos relacionados --}}
+        {{#if relatedProjects}}
+        <div class="related-projects">
+            <h2>Proyectos Relacionados</h2>
+            <div class="projects-grid">
+                {{#each relatedProjects}}
+                    {{> project-card}}
+                {{/each}}
+            </div>
+        </div>
+        {{/if}}
+        
+    </div>
+</section>

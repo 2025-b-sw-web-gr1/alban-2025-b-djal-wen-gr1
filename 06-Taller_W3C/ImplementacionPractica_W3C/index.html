@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calculadora de Huella de Carbono accesible y responsive implementando estándares W3C: HTML5, CSS3, SVG, WCAG y WAI-ARIA">
+    <meta name="keywords" content="accesibilidad, WCAG, WAI-ARIA, HTML5, CSS3, SVG, medio ambiente">
+    <meta name="author" content="Taller W3C">
+    
+    <!-- Título descriptivo para accesibilidad -->
+    <title>Calculadora de Huella de Carbono - Estándares W3C</title>
+    
+    <!-- Preconnect para optimización -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    
+    <!-- Skip to main content link para accesibilidad -->
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+    
+    <!-- Header con navegación semántica -->
+    <header class="site-header" role="banner">
+        <nav class="main-nav" role="navigation" aria-label="Navegación principal">
+            <div class="nav-container">
+                <div class="logo">
+                    <!-- SVG inline con título y descripción para accesibilidad -->
+                    <svg width="48" height="48" viewBox="0 0 48 48" aria-labelledby="logo-title logo-desc" role="img">
+                        <title id="logo-title">Logo Eco Calculadora</title>
+                        <desc id="logo-desc">Un símbolo de hoja verde representando sostenibilidad ambiental</desc>
+                        <defs>
+                            <linearGradient id="leaf-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#10b981;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#059669;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <path d="M24 4C13 4 4 13 4 24s9 20 20 20 20-9 20-20S35 4 24 4zm0 36c-8.8 0-16-7.2-16-16S15.2 8 24 8s16 7.2 16 16-7.2 16-16 16z" fill="url(#leaf-gradient)"/>
+                        <path d="M30 14c-3 0-6 2-8 4-2-2-5-4-8-4-3.3 0-6 2.7-6 6 0 8 14 16 14 16s14-8 14-16c0-3.3-2.7-6-6-6z" fill="#10b981"/>
+                    </svg>
+                    <span class="logo-text">Eco Calculadora</span>
+                </div>
+                
+                <!-- Botón de menú móvil con ARIA -->
+                <button 
+                    class="mobile-menu-toggle" 
+                    id="mobile-menu-toggle"
+                    aria-label="Abrir menú de navegación"
+                    aria-expanded="false"
+                    aria-controls="nav-menu">
+                    <span class="hamburger-line" aria-hidden="true"></span>
+                    <span class="hamburger-line" aria-hidden="true"></span>
+                    <span class="hamburger-line" aria-hidden="true"></span>
+                </button>
+                
+                <ul class="nav-menu" id="nav-menu" role="menubar">
+                    <li role="none"><a href="#main-content" role="menuitem">Inicio</a></li>
+                    <li role="none"><a href="#calculator" role="menuitem">Calculadora</a></li>
+                    <li role="none"><a href="#tips" role="menuitem">Consejos</a></li>
+                    <li role="none"><a href="#about" role="menuitem">Acerca de</a></li>
+                </ul>
+                
+                <!-- Toggle de contraste alto para accesibilidad -->
+                <button 
+                    class="contrast-toggle" 
+                    id="contrast-toggle"
+                    aria-label="Activar modo de alto contraste"
+                    aria-pressed="false">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 2v20"></path>
+                    </svg>
+                </button>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- Main content con ID para skip link -->
+    <main id="main-content" role="main">
+        
+        <!-- Hero Section con ARIA landmarks -->
+        <section class="hero" aria-labelledby="hero-title">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <h1 id="hero-title" class="hero-title">
+                        Calcula tu <span class="highlight">Huella de Carbono</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        Descubre el impacto ambiental de tus actividades diarias y aprende cómo reducir tu huella ecológica
+                    </p>
+                    
+                    <!-- SVG ilustrativo con animación -->
+                    <div class="hero-illustration" aria-hidden="true">
+                        <svg width="300" height="300" viewBox="0 0 300 300" class="earth-svg">
+                            <defs>
+                                <linearGradient id="earth-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+                                    <stop offset="50%" style="stop-color:#10b981;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#059669;stop-opacity:1" />
+                                </linearGradient>
+                                <filter id="glow">
+                                    <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+                                    <feMerge>
+                                        <feMergeNode in="coloredBlur"/>
+                                        <feMergeNode in="SourceGraphic"/>
+                                    </feMerge>
+                                </filter>
+                            </defs>
+                            
+                            <!-- Planeta Tierra -->
+                            <circle cx="150" cy="150" r="80" fill="url(#earth-gradient)" filter="url(#glow)" class="earth-circle">
+                                <animate attributeName="r" values="80;85;80" dur="3s" repeatCount="indefinite"/>
+                            </circle>
+                            
+                            <!-- Continentes estilizados -->
+                            <path d="M 120 130 Q 130 120 140 130 T 160 130" stroke="#059669" stroke-width="3" fill="none" opacity="0.7"/>
+                            <path d="M 140 160 Q 150 150 160 160 T 180 160" stroke="#059669" stroke-width="3" fill="none" opacity="0.7"/>
+                            
+                            <!-- Hojas giratorias alrededor -->
+                            <g class="rotating-leaves">
+                                <path d="M 230 150 Q 240 140 250 150 Q 240 160 230 150" fill="#10b981" opacity="0.8">
+                                    <animateTransform attributeName="transform" type="rotate" from="0 150 150" to="360 150 150" dur="20s" repeatCount="indefinite"/>
+                                </path>
+                                <path d="M 70 150 Q 60 140 50 150 Q 60 160 70 150" fill="#10b981" opacity="0.8">
+                                    <animateTransform attributeName="transform" type="rotate" from="0 150 150" to="360 150 150" dur="20s" repeatCount="indefinite"/>
+                                </path>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Calculator Section -->
+        <section class="calculator-section" id="calculator" aria-labelledby="calculator-title">
+            <div class="container">
+                <h2 id="calculator-title" class="section-title">Calculadora de CO₂</h2>
+                <p class="section-description">Completa el formulario para calcular tu huella de carbono mensual</p>
+                
+                <!-- Formulario accesible con ARIA -->
+                <form class="calculator-form" id="carbon-form" aria-label="Formulario de cálculo de huella de carbono">
+                    
+                    <!-- Grid de inputs usando CSS Grid -->
+                    <div class="form-grid">
+                        
+                        <!-- Transporte -->
+                        <fieldset class="form-group">
+                            <legend class="form-legend">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                    <path d="M5 17h2v-2H5v2zm4 0h2v-2H9v2zm8 0h2v-2h-2v2zm-4 0h2v-2h-2v2zM5 7v7h14V7H5z"/>
+                                    <path d="M19 4H5c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2h2v2h2v-2h6v2h2v-2h2c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2z"/>
+                                </svg>
+                                Transporte
+                            </legend>
+                            
+                            <label for="car-km" class="form-label">
+                                Kilómetros en automóvil (mensual)
+                                <span class="required" aria-label="campo requerido">*</span>
+                            </label>
+                            <input 
+                                type="number" 
+                                id="car-km" 
+                                name="car-km" 
+                                min="0" 
+                                step="1"
+                                class="form-input"
+                                aria-required="true"
+                                aria-describedby="car-km-help"
+                                placeholder="Ej: 500">
+                            <small id="car-km-help" class="form-help">Promedio mensual de kilómetros recorridos en auto</small>
+                            <span class="error-message" id="car-km-error" role="alert" aria-live="polite"></span>
+                        </fieldset>
+                        
+                        <!-- Energía -->
+                        <fieldset class="form-group">
+                            <legend class="form-legend">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                                </svg>
+                                Energía
+                            </legend>
+                            
+                            <label for="electricity" class="form-label">
+                                Consumo eléctrico (kWh/mes)
+                                <span class="required" aria-label="campo requerido">*</span>
+                            </label>
+                            <input 
+                                type="number" 
+                                id="electricity" 
+                                name="electricity" 
+                                min="0" 
+                                step="1"
+                                class="form-input"
+                                aria-required="true"
+                                aria-describedby="electricity-help"
+                                placeholder="Ej: 300">
+                            <small id="electricity-help" class="form-help">Revisa tu recibo de luz para datos exactos</small>
+                            <span class="error-message" id="electricity-error" role="alert" aria-live="polite"></span>
+                        </fieldset>
+                        
+                        <!-- Alimentación -->
+                        <fieldset class="form-group">
+                            <legend class="form-legend">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                    <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+                                    <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+                                    <line x1="6" y1="1" x2="6" y2="4"></line>
+                                    <line x1="10" y1="1" x2="10" y2="4"></line>
+                                    <line x1="14" y1="1" x2="14" y2="4"></line>
+                                </svg>
+                                Alimentación
+                            </legend>
+                            
+                            <label for="meat-meals" class="form-label">
+                                Comidas con carne (por semana)
+                                <span class="required" aria-label="campo requerido">*</span>
+                            </label>
+                            <input 
+                                type="number" 
+                                id="meat-meals" 
+                                name="meat-meals" 
+                                min="0" 
+                                max="21"
+                                step="1"
+                                class="form-input"
+                                aria-required="true"
+                                aria-describedby="meat-meals-help"
+                                placeholder="Ej: 7">
+                            <small id="meat-meals-help" class="form-help">Cantidad de comidas semanales que incluyen carne</small>
+                            <span class="error-message" id="meat-meals-error" role="alert" aria-live="polite"></span>
+                        </fieldset>
+                        
+                        <!-- Residuos -->
+                        <fieldset class="form-group">
+                            <legend class="form-legend">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                </svg>
+                                Residuos
+                            </legend>
+                            
+                            <label for="waste" class="form-label">
+                                Basura generada (kg/semana)
+                                <span class="required" aria-label="campo requerido">*</span>
+                            </label>
+                            <input 
+                                type="number" 
+                                id="waste" 
+                                name="waste" 
+                                min="0" 
+                                step="0.5"
+                                class="form-input"
+                                aria-required="true"
+                                aria-describedby="waste-help"
+                                placeholder="Ej: 5">
+                            <small id="waste-help" class="form-help">Estimado de basura semanal del hogar</small>
+                            <span class="error-message" id="waste-error" role="alert" aria-live="polite"></span>
+                        </fieldset>
+                        
+                    </div>
+                    
+                    <!-- Botón de submit -->
+                    <div class="form-actions">
+                        <button 
+                            type="submit" 
+                            class="btn-primary"
+                            aria-label="Calcular mi huella de carbono">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12 6 12 12 16 14"></polyline>
+                            </svg>
+                            Calcular Huella
+                        </button>
+                        <button 
+                            type="reset" 
+                            class="btn-secondary"
+                            aria-label="Limpiar formulario">
+                            Limpiar
+                        </button>
+                    </div>
+                </form>
+                
+                <!-- Resultado con ARIA live region -->
+                <div 
+                    class="result-container" 
+                    id="result-container" 
+                    role="region"
+                    aria-live="polite"
+                    aria-atomic="true"
+                    aria-label="Resultado del cálculo"
+                    hidden>
+                    
+                    <div class="result-card">
+                        <h3 class="result-title">Tu Huella de Carbono Mensual</h3>
+                        
+                        <div class="result-value">
+                            <span class="result-number" id="result-number">0</span>
+                            <span class="result-unit">kg CO₂</span>
+                        </div>
+                        
+                        <!-- SVG medidor circular -->
+                        <div class="result-gauge" aria-hidden="true">
+                            <svg width="200" height="200" viewBox="0 0 200 200">
+                                <defs>
+                                    <linearGradient id="gauge-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#10b981;stop-opacity:1" />
+                                        <stop offset="50%" style="stop-color:#f59e0b;stop-opacity:1" />
+                                        <stop offset="100%" style="stop-color:#ef4444;stop-opacity:1" />
+                                    </linearGradient>
+                                </defs>
+                                
+                                <!-- Círculo de fondo -->
+                                <circle cx="100" cy="100" r="80" fill="none" stroke="#e5e7eb" stroke-width="20"/>
+                                
+                                <!-- Círculo de progreso -->
+                                <circle 
+                                    id="gauge-progress"
+                                    cx="100" 
+                                    cy="100" 
+                                    r="80" 
+                                    fill="none" 
+                                    stroke="url(#gauge-gradient)" 
+                                    stroke-width="20"
+                                    stroke-dasharray="502.4"
+                                    stroke-dashoffset="502.4"
+                                    transform="rotate(-90 100 100)"
+                                    stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        
+                        <p class="result-status" id="result-status"></p>
+                        
+                        <!-- Desglose visual con flexbox -->
+                        <div class="result-breakdown">
+                            <h4>Desglose por Categoría</h4>
+                            <div class="breakdown-grid">
+                                <div class="breakdown-item">
+                                    <span class="breakdown-label">Transporte</span>
+                                    <div class="breakdown-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Porcentaje de transporte">
+                                        <div class="breakdown-fill breakdown-transport" id="breakdown-transport"></div>
+                                    </div>
+                                    <span class="breakdown-value" id="value-transport">0%</span>
+                                </div>
+                                
+                                <div class="breakdown-item">
+                                    <span class="breakdown-label">Energía</span>
+                                    <div class="breakdown-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Porcentaje de energía">
+                                        <div class="breakdown-fill breakdown-energy" id="breakdown-energy"></div>
+                                    </div>
+                                    <span class="breakdown-value" id="value-energy">0%</span>
+                                </div>
+                                
+                                <div class="breakdown-item">
+                                    <span class="breakdown-label">Alimentación</span>
+                                    <div class="breakdown-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Porcentaje de alimentación">
+                                        <div class="breakdown-fill breakdown-food" id="breakdown-food"></div>
+                                    </div>
+                                    <span class="breakdown-value" id="value-food">0%</span>
+                                </div>
+                                
+                                <div class="breakdown-item">
+                                    <span class="breakdown-label">Residuos</span>
+                                    <div class="breakdown-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Porcentaje de residuos">
+                                        <div class="breakdown-fill breakdown-waste" id="breakdown-waste"></div>
+                                    </div>
+                                    <span class="breakdown-value" id="value-waste">0%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+        
+        <!-- Tips Section -->
+        <section class="tips-section" id="tips" aria-labelledby="tips-title">
+            <div class="container">
+                <h2 id="tips-title" class="section-title">Consejos para Reducir tu Huella</h2>
+                <p class="section-description">Pequeñas acciones que generan grandes cambios</p>
+                
+                <!-- Grid de consejos -->
+                <div class="tips-grid">
+                    
+                    <article class="tip-card">
+                        <div class="tip-icon" aria-hidden="true">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                        </div>
+                        <h3 class="tip-title">Usa Transporte Público</h3>
+                        <p class="tip-description">Reduce hasta un 45% de emisiones eligiendo transporte público o compartido</p>
+                    </article>
+                    
+                    <article class="tip-card">
+                        <div class="tip-icon" aria-hidden="true">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 18l6-6-6-6"></path>
+                            </svg>
+                        </div>
+                        <h3 class="tip-title">Ahorra Energía</h3>
+                        <p class="tip-description">Apaga dispositivos y usa bombillas LED para reducir consumo eléctrico</p>
+                    </article>
+                    
+                    <article class="tip-card">
+                        <div class="tip-icon" aria-hidden="true">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+                                <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="tip-title">Come Local y Vegetal</h3>
+                        <p class="tip-description">Prefiere alimentos locales y reduce el consumo de carne</p>
+                    </article>
+                    
+                    <article class="tip-card">
+                        <div class="tip-icon" aria-hidden="true">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                        </div>
+                        <h3 class="tip-title">Recicla y Reutiliza</h3>
+                        <p class="tip-description">Separa residuos y reduce el uso de plásticos de un solo uso</p>
+                    </article>
+                    
+                </div>
+            </div>
+        </section>
+        
+        <!-- About Section -->
+        <section class="about-section" id="about" aria-labelledby="about-title">
+            <div class="container">
+                <div class="about-content">
+                    <h2 id="about-title" class="section-title">Acerca de Este Proyecto</h2>
+                    
+                    <div class="standards-grid">
+                        <article class="standard-card">
+                            <h3>
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                                </svg>
+                                HTML5 Semántico
+                            </h3>
+                            <p>Estructura semántica con elementos como <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code> y <code>&lt;footer&gt;</code></p>
+                        </article>
+                        
+                        <article class="standard-card">
+                            <h3>
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                                    <line x1="9" y1="3" x2="9" y2="21"/>
+                                </svg>
+                                CSS3 Grid & Flexbox
+                            </h3>
+                            <p>Diseño moderno y responsive usando CSS Grid para layouts complejos y Flexbox para componentes flexibles</p>
+                        </article>
+                        
+                        <article class="standard-card">
+                            <h3>
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                                </svg>
+                                SVG Interactivo
+                            </h3>
+                            <p>Gráficos vectoriales escalables con animaciones CSS y JavaScript, accesibles con títulos y descripciones</p>
+                        </article>
+                        
+                        <article class="standard-card">
+                            <h3>
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                                WCAG 2.1 AA
+                            </h3>
+                            <p>Cumplimiento de pautas de accesibilidad: contraste de color, navegación por teclado, textos alternativos</p>
+                        </article>
+                        
+                        <article class="standard-card">
+                            <h3>
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <line x1="12" y1="16" x2="12" y2="12"/>
+                                    <line x1="12" y1="8" x2="12.01" y2="8"/>
+                                </svg>
+                                WAI-ARIA
+                            </h3>
+                            <p>Atributos ARIA para mejorar accesibilidad: roles, propiedades, estados, live regions y labels descriptivos</p>
+                        </article>
+                        
+                        <article class="standard-card">
+                            <h3>
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                                    <line x1="8" y1="21" x2="16" y2="21"/>
+                                    <line x1="12" y1="17" x2="12" y2="21"/>
+                                </svg>
+                                Responsive Design
+                            </h3>
+                            <p>Diseño adaptable a todos los dispositivos con breakpoints y unidades relativas (rem, em, %)</p>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+    
+    <!-- Footer semántico -->
+    <footer class="site-footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2025 Taller W3C - Implementación Práctica de Estándares Web</p>
+                <p>Proyecto educativo demostrando HTML5, CSS3, SVG, WCAG 2.1 y WAI-ARIA</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="js/calculator.js"></script>
+    <script src="js/accessibility.js"></script>
+</body>
+</html>

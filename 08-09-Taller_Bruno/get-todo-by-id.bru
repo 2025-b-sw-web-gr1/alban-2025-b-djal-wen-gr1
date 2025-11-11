@@ -1,0 +1,28 @@
+meta {
+  name: Obtener tarea por ID
+  type: http
+  seq: 16
+}
+
+get {
+  url: https://jsonplaceholder.typicode.com/todos/1
+  body: none
+  auth: none
+}
+
+docs {
+  # GET /todos/:id
+  
+  Obtiene una tarea específica por su ID.
+  
+  ## Parámetros
+  - id: 1 (en la URL)
+  
+  ## Respuesta esperada
+  - Status: 200 OK
+  - Objeto tarea con:
+    - id: 1
+    - title: string
+    - completed: boolean
+    - userId: number
+}

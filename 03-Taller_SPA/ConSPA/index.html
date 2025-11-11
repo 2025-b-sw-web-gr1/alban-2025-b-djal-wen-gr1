@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spider-Verse SPA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-shadow {
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { 
+                opacity: 0; 
+                transform: translateY(20px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+        
+        .slide-in {
+            animation: slideIn 0.6s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 transition-colors duration-300 min-h-screen">
+    
+    <!-- Navigation Bar -->
+    <nav class="bg-white dark:bg-gray-800 shadow-lg sticky top-0 z-50 transition-colors duration-300">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-8">
+                    <h1 class="text-2xl font-bold gradient-text cursor-pointer" onclick="navigateTo('/no-way-home')">
+                        🕷️ Spider-Verse SPA
+                    </h1>
+                    <div class="hidden md:flex space-x-6">
+                        <a href="/no-way-home" 
+                           class="nav-link font-semibold hover:text-blue-600 dark:hover:text-blue-400 transition-colors px-3 py-2 rounded-lg"
+                           data-route="/no-way-home">
+                            No Way Home
+                        </a>
+                        <a href="/across-the-spiderverse" 
+                           class="nav-link font-semibold hover:text-blue-600 dark:hover:text-blue-400 transition-colors px-3 py-2 rounded-lg"
+                           data-route="/across-the-spiderverse">
+                            Across the Spider-Verse
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Theme Toggle Button -->
+                <button id="theme-toggle" 
+                        class="p-3 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-all duration-300 transform hover:scale-110">
+                    <svg id="theme-toggle-dark-icon" 
+                         class="w-6 h-6 hidden dark:block text-yellow-400" 
+                         fill="currentColor" 
+                         viewBox="0 0 20 20">
+                        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                    </svg>
+                    <svg id="theme-toggle-light-icon" 
+                         class="w-6 h-6 block dark:hidden text-gray-800" 
+                         fill="currentColor" 
+                         viewBox="0 0 20 20">
+                        <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" 
+                              fill-rule="evenodd" 
+                              clip-rule="evenodd"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div class="md:hidden mt-4 flex space-x-4">
+                <a href="/no-way-home" 
+                   class="nav-link flex-1 text-center py-2 px-4 rounded-lg font-semibold transition-colors"
+                   data-route="/no-way-home">
+                    No Way Home
+                </a>
+                <a href="/across-the-spiderverse" 
+                   class="nav-link flex-1 text-center py-2 px-4 rounded-lg font-semibold transition-colors"
+                   data-route="/across-the-spiderverse">
+                    Across
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main App Root -->
+    <main id="app-root" class="container mx-auto px-4 py-8">
+        <!-- Content will be dynamically rendered here -->
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-gray-800 mt-12 py-8 transition-colors duration-300">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-gray-600 dark:text-gray-400">
+                © 2025 Spider-Verse SPA | Single-Page Application con JavaScript Nativo
+            </p>
+            <p class="text-gray-500 dark:text-gray-500 text-sm mt-2">
+                Creado con HTML, Tailwind CSS y JavaScript Vanilla 🕸️
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // ========================================
+        // DATA LAYER - Movie Information (Simulating API)
+        // ========================================
+        
+        const movieData = {
+            noWayHome: {
+                id: 'no-way-home',
+                title: 'Spider-Man: No Way Home',
+                subtitle: 'El multiverso se ha desatado',
+                badge: 'MCU Fase 4',
+                badgeColor: 'bg-red-600',
+                rating: '8.2/10',
+                duration: '148 minutos',
+                image: 'https://image.tmdb.org/t/p/original/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg',
+                fallbackImage: 'https://via.placeholder.com/800x1200/DC2626/FFFFFF?text=Spider-Man+No+Way+Home',
+                gradientFrom: 'from-red-600',
+                gradientTo: 'to-blue-900',
+                cardGradient: 'from-blue-600 to-purple-700',
+                genres: ['Acción', 'Superhéroes', 'Ciencia Ficción'],
+                genreColors: ['bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200',
+                             'bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200',
+                             'bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200'],
+                synopsis: [
+                    'Por primera vez en la historia cinematográfica de Spider-Man, nuestro héroe y vecino amigable es desenmascarado y ya no puede separar su vida normal de los enormes riesgos que conlleva ser un superhéroe.',
+                    'Cuando le pide ayuda a Doctor Strange, los riesgos pasan a ser aún más peligrosos, obligándolo a descubrir lo que realmente significa ser Spider-Man. Con el Multiverso abierto, Peter Parker deberá enfrentar villanos de otras realidades y aliarse con versiones alternativas de sí mismo.',
+                    'Esta épica aventura reúne a tres generaciones de Spider-Man en una historia que cambiará para siempre el MCU y explorará temas profundos sobre identidad, responsabilidad y sacrificio.'
+                ],
+                details: {
+                    director: 'Jon Watts',
+                    cast: ['Tom Holland', 'Zendaya', 'Benedict Cumberbatch'],
+                    genre: 'Acción, Aventura, Superhéroes',
+                    releaseDate: '17 de Diciembre, 2021',
+                    boxOffice: '$1.92 Billones',
+                    studio: 'Marvel Studios / Sony Pictures'
+                },
+                achievements: [
+                    { icon: '🏆', text: 'Nominada al Oscar por Mejores Efectos Visuales' },
+                    { icon: '🎬', text: 'Película más taquillera de 2021' },
+                    { icon: '⭐', text: '6ta película más taquillera de todos los tiempos' },
+                    { icon: '💎', text: 'Primera película post-pandemia en superar $1 billón' }
+                ],
+                trivia: [
+                    { icon: '🕷️', text: 'Reúne a los tres Spider-Man: Tobey Maguire, Andrew Garfield y Tom Holland' },
+                    { icon: '🎭', text: 'Villanos icónicos regresan de universos anteriores' },
+                    { icon: '🎨', text: 'Más de 1,500 efectos visuales creados para la película' },
+                    { icon: '📱', text: 'La campaña de marketing fue la más exitosa de Marvel' }
+                ]
+            },
+            acrossTheSpiderVerse: {
+                id: 'across-the-spiderverse',
+                title: 'Spider-Man: Across the Spider-Verse',
+                subtitle: 'Un viaje épico a través del multiverso',
+                badge: 'Animación · Sony Pictures',
+                badgeColor: 'bg-gradient-to-r from-purple-600 to-pink-600',
+                rating: '8.7/10',
+                duration: '140 minutos',
+                image: 'https://image.tmdb.org/t/p/original/8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg',
+                fallbackImage: 'https://via.placeholder.com/800x1200/9333EA/FFFFFF?text=Across+the+Spider-Verse',
+                gradientFrom: 'from-purple-600',
+                gradientTo: 'to-pink-600',
+                cardGradient: 'from-purple-600 to-pink-600',
+                genres: ['Animación', 'Acción', 'Aventura'],
+                genreColors: ['bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200',
+                             'bg-pink-100 dark:bg-pink-900 text-pink-800 dark:text-pink-200',
+                             'bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200'],
+                synopsis: [
+                    'Después de reunirse con Gwen Stacy, el amigable vecino de tiempo completo de Brooklyn Spider-Man es catapultado a través del Multiverso, donde se encuentra con un equipo de Spider-People encargados de proteger su propia existencia.',
+                    'Pero cuando los héroes chocan sobre cómo manejar una nueva amenaza, Miles se encuentra enfrentado con otros Spiders y debe redefinir lo que significa ser un héroe para poder salvar a las personas que más ama. La película explora universos visualmente impresionantes, cada uno con su propio estilo de animación único.',
+                    'Con una animación revolucionaria que fusiona diferentes estilos artísticos y técnicas, "Across the Spider-Verse" lleva el cine de animación a nuevas alturas, presentando más de 240 personajes animados y seis universos distintos, cada uno con su propia estética visual.'
+                ],
+                details: {
+                    director: 'Joaquim Dos Santos, Kemp Powers, Justin K. Thompson',
+                    cast: ['Shameik Moore', 'Hailee Steinfeld', 'Oscar Isaac'],
+                    genre: 'Animación, Acción, Aventura',
+                    releaseDate: '2 de Junio, 2023',
+                    boxOffice: '$690.5 Millones',
+                    studio: 'Sony Pictures Animation'
+                },
+                achievements: [
+                    { icon: '🏆', text: 'Ganadora del Premio BAFTA a Mejor Película de Animación' },
+                    { icon: '🎨', text: 'Nominada al Oscar por Mejor Película de Animación' },
+                    { icon: '⭐', text: '96% en Rotten Tomatoes - Aclamación crítica universal' },
+                    { icon: '🎬', text: 'Película de animación más taquillera de 2023' }
+                ],
+                trivia: [
+                    { icon: '🎨', text: 'Más de 240 personajes animados únicos' },
+                    { icon: '🌈', text: '6 universos distintos, cada uno con su propio estilo visual' },
+                    { icon: '✨', text: 'Fusión de técnicas 2D, 3D y CGI innovadoras' },
+                    { icon: '🖼️', text: 'Cada cuadro diseñado como una obra de arte individual' }
+                ],
+                universes: [
+                    { emoji: '🌆', name: 'Tierra-1610', description: 'Estilo híbrido único de Miles con pinceladas visibles y colores vibrantes' },
+                    { emoji: '🎨', name: 'Tierra-65', description: 'Mundo de Gwen con paleta de acuarelas y tonos pastel dinámicos' },
+                    { emoji: '🌃', name: 'Nueva Mumbai', description: 'Fusión cyberpunk de arquitectura india con neón y tecnología futurista' }
+                ]
+            }
+        };
+
+        // ========================================
+        // THEME MANAGEMENT
+        // ========================================
+        
+        function initTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark');
+            } else {
+                document.body.classList.remove('dark');
+            }
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle('dark');
+            const currentTheme = document.body.classList.contains('dark') ? 'dark' : 'light';
+            localStorage.setItem('theme', currentTheme);
+        }
+
+        // ========================================
+        // ROUTING SYSTEM
+        // ========================================
+        
+        const routes = {
+            '/no-way-home': () => renderHomeView(movieData.noWayHome),
+            '/across-the-spiderverse': () => renderAcrossView(movieData.acrossTheSpiderVerse)
+        };
+
+        function navigateTo(path) {
+            // Update browser history
+            history.pushState({}, '', path);
+            
+            // Render the appropriate view
+            handleRoute(path);
+            
+            // Update navigation active states
+            updateNavigation(path);
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function handleRoute(path = window.location.pathname) {
+            // Default to No Way Home if path is root or unknown
+            if (path === '/' || !routes[path]) {
+                path = '/no-way-home';
+                history.replaceState({}, '', path);
+            }
+            
+            // Execute the route handler
+            const routeHandler = routes[path];
+            if (routeHandler) {
+                routeHandler();
+            }
+            
+            // Update navigation
+            updateNavigation(path);
+        }
+
+        function updateNavigation(currentPath) {
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            navLinks.forEach(link => {
+                const route = link.getAttribute('data-route');
+                
+                if (route === currentPath) {
+                    link.classList.remove('text-gray-600', 'dark:text-gray-300', 'bg-transparent');
+                    link.classList.add('text-white', 'bg-blue-600', 'dark:bg-blue-500');
+                } else {
+                    link.classList.remove('text-white', 'bg-blue-600', 'dark:bg-blue-500');
+                    link.classList.add('text-gray-600', 'dark:text-gray-300', 'bg-transparent');
+                }
+            });
+        }
+
+        // ========================================
+        // VIEW RENDERING FUNCTIONS
+        // ========================================
+        
+        function renderHomeView(data) {
+            const appRoot = document.getElementById('app-root');
+            
+            appRoot.innerHTML = `
+                <div class="fade-in">
+                    <!-- Hero Section -->
+                    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl overflow-hidden mb-8 hero-shadow transition-colors duration-300">
+                        <div class="grid md:grid-cols-2 gap-0">
+                            <!-- Image Section -->
+                            <div class="relative h-64 md:h-auto bg-gradient-to-br ${data.gradientFrom} ${data.gradientTo}">
+                                <img 
+                                    src="${data.image}" 
+                                    alt="${data.title}"
+                                    class="w-full h-full object-cover"
+                                    onerror="this.src='${data.fallbackImage}'"
+                                >
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                            </div>
+                            
+                            <!-- Content Section -->
+                            <div class="p-8 md:p-12">
+                                <div class="inline-block px-4 py-2 ${data.badgeColor} text-white text-sm font-bold rounded-full mb-4">
+                                    ${data.badge}
+                                </div>
+                                <h1 class="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-4">
+                                    ${data.title}
+                                </h1>
+                                <p class="text-xl text-gray-600 dark:text-gray-300 font-semibold mb-6">
+                                    ${data.subtitle}
+                                </p>
+                                <div class="flex flex-wrap gap-3 mb-6">
+                                    ${data.genres.map((genre, index) => `
+                                        <span class="px-4 py-2 ${data.genreColors[index]} rounded-lg font-semibold text-sm">
+                                            ${genre}
+                                        </span>
+                                    `).join('')}
+                                </div>
+                                <div class="flex items-center space-x-6 text-gray-600 dark:text-gray-400">
+                                    <div class="flex items-center">
+                                        <svg class="w-5 h-5 text-yellow-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <span class="font-bold text-gray-900 dark:text-white">${data.rating}</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        <span>${data.duration}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Description Section -->
+                    <div class="grid md:grid-cols-3 gap-8 mb-8">
+                        <div class="md:col-span-2">
+                            <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 transition-colors duration-300 slide-in">
+                                <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
+                                    <svg class="w-8 h-8 mr-3 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"></path>
+                                    </svg>
+                                    Sinopsis
+                                </h2>
+                                ${data.synopsis.map(paragraph => `
+                                    <p class="text-gray-700 dark:text-gray-300 text-lg leading-relaxed mb-4">
+                                        ${paragraph}
+                                    </p>
+                                `).join('')}
+                            </div>
+                        </div>
+
+                        <!-- Properties Card -->
+                        <div class="md:col-span-1">
+                            <div class="bg-gradient-to-br ${data.cardGradient} rounded-2xl shadow-lg p-8 text-white sticky top-24">
+                                <h2 class="text-2xl font-bold mb-6 flex items-center">
+                                    <svg class="w-7 h-7 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                    Datos Clave
+                                </h2>
+                                <div class="space-y-4">
+                                    <div class="border-b border-white/30 pb-3">
+                                        <p class="text-blue-100 text-sm font-semibold mb-1">Director</p>
+                                        <p class="font-bold text-lg">${data.details.director}</p>
+                                    </div>
+                                    <div class="border-b border-white/30 pb-3">
+                                        <p class="text-blue-100 text-sm font-semibold mb-1">Reparto Principal</p>
+                                        ${data.details.cast.map(actor => `<p class="font-bold">${actor}</p>`).join('')}
+                                    </div>
+                                    <div class="border-b border-white/30 pb-3">
+                                        <p class="text-blue-100 text-sm font-semibold mb-1">Género</p>
+                                        <p class="font-bold">${data.details.genre}</p>
+                                    </div>
+                                    <div class="border-b border-white/30 pb-3">
+                                        <p class="text-blue-100 text-sm font-semibold mb-1">Fecha de Estreno</p>
+                                        <p class="font-bold">${data.details.releaseDate}</p>
+                                    </div>
+                                    <div class="border-b border-white/30 pb-3">
+                                        <p class="text-blue-100 text-sm font-semibold mb-1">Recaudación Mundial</p>
+                                        <p class="font-bold text-2xl">${data.details.boxOffice}</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-blue-100 text-sm font-semibold mb-1">Estudio</p>
+                                        <p class="font-bold">${data.details.studio}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Additional Info Section -->
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 transition-colors duration-300">
+                            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+                                <svg class="w-7 h-7 mr-3 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                Logros y Premios
+                            </h3>
+                            <ul class="space-y-3 text-gray-700 dark:text-gray-300">
+                                ${data.achievements.map(achievement => `
+                                    <li class="flex items-start">
+                                        <span class="text-yellow-500 mr-3 text-xl">${achievement.icon}</span>
+                                        <span>${achievement.text}</span>
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>
+
+                        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 transition-colors duration-300">
+                            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+                                <svg class="w-7 h-7 mr-3 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                </svg>
+                                Curiosidades
+                            </h3>
+                            <ul class="space-y-3 text-gray-700 dark:text-gray-300">
+                                ${data.trivia.map(item => `
+                                    <li class="flex items-start">
+                                        <span class="text-blue-500 mr-3 text-xl">${item.icon}</span>
+                                        <span>${item.text}</span>
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderAcrossView(data) {
+            const appRoot = document.getElementById('app-root');
+            
+            appRoot.innerHTML = `
+                <div class="fade-in">
+                    <!-- Hero Section -->
+                    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl overflow-hidden mb-8 hero-shadow transition-colors duration-300">
+                        <div class="grid md:grid-cols-2 gap-0">
+                            <!-- Image Section -->
+                            <div class="relative h-64 md:h-auto bg-gradient-to-br ${data.gradientFrom} ${data.gradientTo}">
+                                <img 
+                                    src="${data.image}" 
+                                    alt="${data.title}"
+                                    class="w-full h-full object-cover"
+                                    onerror="this.src='${data.fallbackImage}'"
+                                >
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                            </div>
+                            
+                            <!-- Content Section -->
+                            <div class="p-8 md:p-12">
+                                <div class="inline-block px-4 py-2 ${data.badgeColor} text-white text-sm font-bold rounded-full mb-4">
+                                    ${data.badge}
+                                </div>
+                                <h1 class="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-4">
+                                    ${data.title}
+                                </h1>
+                                <p class="text-xl text-gray-600 dark:text-gray-300 font-semibold mb-6">
+                                    ${data.subtitle}
+                                </p>
+                                <div class="flex flex-wrap gap-3 mb-6">
+                                    ${data.genres.map((genre, index) => `
+                                        <span class="px-4 py-2 ${data.genreColors[index]} rounded-lg font-semibold text-sm">
+                                            ${genre}
+                                        </span>
+                                    `).join('')}
+                                </div>
+                                <div class="flex items-center space-x-6 text-gray-600 dark:text-gray-400">
+                                    <div class="flex items-center">
+                                        <svg class="w-5 h-5 text-yellow-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <span class="font-bold text-gray-900 dark:text-white">${data.rating}</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        <span>${data.duration}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Description Section -->
+                    <div class="grid md:grid-cols-3 gap-8 mb-8">
+                        <div class="md:col-span-2">
+                            <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 transition-colors duration-300 slide-in">
+                                <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
+                                    <svg class="w-8 h-8 mr-3 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"></path>
+                                    </svg>
+                                    Sinopsis
+                                </h2>
+                                ${data.synopsis.map(paragraph => `
+                                    <p class="text-gray-700 dark:text-gray-300 text-lg leading-relaxed mb-4">
+                                        ${paragraph}
+                                    </p>
+                                `).join('')}
+                            </div>
+                        </div>
+
+                        <!-- Properties Card -->
+                        <div class="md:col-span-1">
+                            <div class="bg-gradient-to-br ${data.cardGradient} rounded-2xl shadow-lg p-8 text-white sticky top-24">
+                                <h2 class="text-2xl font-bold mb-6 flex items-center">
+                                    <svg class="w-7 h-7 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                    Datos Clave
+                                </h2>
+                                <div class="space-y-4">
+                                    <div class="border-b border-white/30 pb-3">
+                                        <p class="text-purple-100 text-sm font-semibold mb-1">Directores</p>
+                                        <p class="font-bold">${data.details.director}</p>
+                                    </div>
+                                    <div class="border-b border-white/30 pb-3">
+                                        <p class="text-purple-100 text-sm font-semibold mb-1">Reparto de Voces</p>
+                                        ${data.details.cast.map(actor => `<p class="font-bold">${actor}</p>`).join('')}
+                                    </div>
+                                    <div class="border-b border-white/30 pb-3">
+                                        <p class="text-purple-100 text-sm font-semibold mb-1">Género</p>
+                                        <p class="font-bold">${data.details.genre}</p>
+                                    </div>
+                                    <div class="border-b border-white/30 pb-3">
+                                        <p class="text-purple-100 text-sm font-semibold mb-1">Fecha de Estreno</p>
+                                        <p class="font-bold">${data.details.releaseDate}</p>
+                                    </div>
+                                    <div class="border-b border-white/30 pb-3">
+                                        <p class="text-purple-100 text-sm font-semibold mb-1">Recaudación Mundial</p>
+                                        <p class="font-bold text-2xl">${data.details.boxOffice}</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-purple-100 text-sm font-semibold mb-1">Estudio</p>
+                                        <p class="font-bold">${data.details.studio}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Additional Info Section -->
+                    <div class="grid md:grid-cols-2 gap-8 mb-8">
+                        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 transition-colors duration-300">
+                            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+                                <svg class="w-7 h-7 mr-3 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                Logros y Premios
+                            </h3>
+                            <ul class="space-y-3 text-gray-700 dark:text-gray-300">
+                                ${data.achievements.map(achievement => `
+                                    <li class="flex items-start">
+                                        <span class="text-yellow-500 mr-3 text-xl">${achievement.icon}</span>
+                                        <span>${achievement.text}</span>
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>
+
+                        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 transition-colors duration-300">
+                            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+                                <svg class="w-7 h-7 mr-3 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                </svg>
+                                Innovación Visual
+                            </h3>
+                            <ul class="space-y-3 text-gray-700 dark:text-gray-300">
+                                ${data.trivia.map(item => `
+                                    <li class="flex items-start">
+                                        <span class="text-purple-500 mr-3 text-xl">${item.icon}</span>
+                                        <span>${item.text}</span>
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Animation Styles Section -->
+                    <div class="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-gray-800 dark:to-gray-700 rounded-2xl shadow-lg p-8 transition-colors duration-300">
+                        <h3 class="text-3xl font-bold text-gray-900 dark:text-white mb-6 text-center">
+                            🎭 Estilos de Animación por Universo
+                        </h3>
+                        <div class="grid md:grid-cols-3 gap-6">
+                            ${data.universes.map(universe => `
+                                <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md">
+                                    <div class="text-4xl mb-3 text-center">${universe.emoji}</div>
+                                    <h4 class="font-bold text-lg text-gray-900 dark:text-white mb-2">${universe.name}</h4>
+                                    <p class="text-gray-600 dark:text-gray-300 text-sm">
+                                        ${universe.description}
+                                    </p>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // ========================================
+        // EVENT LISTENERS SETUP
+        // ========================================
+        
+        function setupEventListeners() {
+            // Theme toggle
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            if (themeToggleBtn) {
+                themeToggleBtn.addEventListener('click', toggleTheme);
+            }
+
+            // Navigation links
+            document.addEventListener('click', (e) => {
+                if (e.target.matches('.nav-link') || e.target.closest('.nav-link')) {
+                    e.preventDefault();
+                    const link = e.target.matches('.nav-link') ? e.target : e.target.closest('.nav-link');
+                    const route = link.getAttribute('data-route') || link.getAttribute('href');
+                    navigateTo(route);
+                }
+            });
+
+            // Browser back/forward buttons
+            window.addEventListener('popstate', () => {
+                handleRoute(window.location.pathname);
+            });
+        }
+
+        // ========================================
+        // INITIALIZATION
+        // ========================================
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize theme
+            initTheme();
+            
+            // Setup event listeners
+            setupEventListeners();
+            
+            // Handle initial route
+            handleRoute();
+            
+            console.log('✅ Spider-Verse SPA initialized successfully');
+            console.log('🌓 Theme persistence enabled');
+            console.log('🔄 Dynamic routing enabled');
+            console.log('📊 Movie data loaded from JSON objects');
+        });
+    </script>
+</body>
+</html>

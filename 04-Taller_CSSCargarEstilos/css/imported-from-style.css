@@ -1,0 +1,38 @@
+/* ============================================
+   IMPORTED-FROM-STYLE.CSS
+   Estilos que se importan desde un bloque <style>
+   ============================================ */
+
+/* Este archivo demuestra @import dentro de <style> en HTML */
+
+.imported-style-box {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+}
+
+.imported-style-box::before {
+    content: "📥 ";
+    font-size: 1.5rem;
+    margin-right: 10px;
+}
+
+/* Animación para demostrar que los estilos se cargaron */
+@keyframes slideInFromLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.imported-style-box {
+    animation: slideInFromLeft 0.5s ease-out;
+}

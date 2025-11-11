@@ -1,0 +1,24 @@
+meta {
+  name: Obtener todos los álbumes
+  type: http
+  seq: 10
+}
+
+get {
+  url: https://jsonplaceholder.typicode.com/albums
+  body: none
+  auth: none
+}
+
+docs {
+  # GET /albums
+  
+  Obtiene todos los álbumes disponibles.
+  
+  ## Respuesta esperada
+  - Status: 200 OK
+  - Array de 100 álbumes con:
+    - id: number
+    - title: string
+    - userId: number
+}

@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram - Réplica</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <svg width="103" height="29" viewBox="0 0 103 29" fill="currentColor">
+                    <path d="M6.5 0C2.91 0 0 2.91 0 6.5v16C0 26.09 2.91 29 6.5 29h16c3.59 0 6.5-2.91 6.5-6.5v-16C29 2.91 26.09 0 22.5 0h-16zm8 4c1.93 0 2.16.01 2.92.04.71.03 1.19.14 1.62.3.44.17.82.4 1.19.78.38.37.61.75.78 1.19.16.43.27.91.3 1.62.03.76.04.99.04 2.92v.14c0 1.93-.01 2.16-.04 2.92-.03.71-.14 1.19-.3 1.62-.17.44-.4.82-.78 1.19-.37.38-.75.61-1.19.78-.43.16-.91.27-1.62.3-.76.03-.99.04-2.92.04h-.14c-1.93 0-2.16-.01-2.92-.04-.71-.03-1.19-.14-1.62-.3-.44-.17-.82-.4-1.19-.78-.38-.37-.61-.75-.78-1.19-.16-.43-.27-.91-.3-1.62-.03-.76-.04-.99-.04-2.92v-.14c0-1.93.01-2.16.04-2.92.03-.71.14-1.19.3-1.62.17-.44.4-.82.78-1.19.37-.38.75-.61 1.19-.78.43-.16.91-.27 1.62-.3C12.34 4.01 12.57 4 14.5 4zm0 2.16c-1.88 0-2.1 0-2.84.04-.65.03-.99.13-1.23.22-.31.12-.53.26-.76.49-.23.23-.37.45-.49.76-.09.24-.19.58-.22 1.23-.04.74-.04.96-.04 2.84v.12c0 1.88 0 2.1.04 2.84.03.65.13.99.22 1.23.12.31.26.53.49.76.23.23.45.37.76.49.24.09.58.19 1.23.22.74.04.96.04 2.84.04h.12c1.88 0 2.1 0 2.84-.04.65-.03.99-.13 1.23-.22.31-.12.53-.26.76-.49.23-.23.37-.45.49-.76.09-.24.19-.58.22-1.23.04-.74.04-.96.04-2.84v-.12c0-1.88 0-2.1-.04-2.84-.03-.65-.13-.99-.22-1.23-.12-.31-.26-.53-.49-.76-.23-.23-.45-.37-.76-.49-.24-.09-.58-.19-1.23-.22-.74-.04-.96-.04-2.84-.04zm0 3.68c2.07 0 3.75 1.68 3.75 3.75S16.57 17.34 14.5 17.34 10.75 15.66 10.75 13.59s1.68-3.75 3.75-3.75zm0 6.18c1.34 0 2.43-1.09 2.43-2.43 0-1.34-1.09-2.43-2.43-2.43-1.34 0-2.43 1.09-2.43 2.43 0 1.34 1.09 2.43 2.43 2.43zm3.93-7.03c.48 0 .88.39.88.88 0 .48-.39.88-.88.88-.48 0-.88-.39-.88-.88 0-.48.39-.88.88-.88z"/>
+                </svg>
+                <span class="logo-text">Instagram</span>
+            </div>
+            
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#funciones">Funciones</a></li>
+                <li><a href="#comunidad">Comunidad</a></li>
+                <li><a href="#creadores">Creadores</a></li>
+                <li><a href="#negocios">Negocios</a></li>
+            </ul>
+            
+            <button class="nav-cta">Iniciar sesión</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Te acercamos<br>
+                    a las personas<br>
+                    <span class="gradient-text">y las cosas</span><br>
+                    que más te importan
+                </h1>
+                <p class="hero-subtitle">
+                    Comparte momentos, conecta con amigos y descubre contenido que te inspira
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn-primary">Descargar ahora</button>
+                    <button class="btn-secondary">Más información</button>
+                </div>
+            </div>
+            
+            <div class="hero-images">
+                <div class="image-grid">
+                    <div class="image-card image-1">
+                        <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=400&h=500&fit=crop" alt="Instagram Story" onerror="this.src='https://via.placeholder.com/400x500/E1306C/FFFFFF?text=Instagram'">
+                    </div>
+                    <div class="image-card image-2">
+                        <img src="https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?w=400&h=500&fit=crop" alt="Instagram Feed" onerror="this.src='https://via.placeholder.com/400x500/833AB4/FFFFFF?text=Instagram'">
+                    </div>
+                    <div class="image-card image-3">
+                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=500&fit=crop" alt="Instagram Reels" onerror="this.src='https://via.placeholder.com/400x500/FD1D1D/FFFFFF?text=Instagram'">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="funciones">
+        <div class="features-container">
+            <div class="section-header">
+                <h2>Explora las novedades</h2>
+                <p>Nuestras funciones, que evolucionan día a día, te permiten expresarte de nuevas formas</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg>
+                    </div>
+                    <h3>Descubre Reels</h3>
+                    <p>Crea, comparte y mira videos cortos y entretenidos en Instagram</p>
+                    <a href="#" class="feature-link">Explorar Reels →</a>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                        </svg>
+                    </div>
+                    <h3>Mira Historias</h3>
+                    <p>Mira las historias y los videos en vivo de tus personas favoritas</p>
+                    <a href="#" class="feature-link">Ver más →</a>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                    </div>
+                    <h3>Mantén conversaciones</h3>
+                    <p>Envía mensajes, fotos y videos a un amigo o a un grupo de personas</p>
+                    <a href="#" class="feature-link">Messenger →</a>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                    </div>
+                    <h3>Encuentra algo nuevo</h3>
+                    <p>Descubre creadores y contenido en función de tus intereses</p>
+                    <a href="#" class="feature-link">Buscar y explorar →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section class="community" id="comunidad">
+        <div class="community-container">
+            <div class="community-content">
+                <h2>Nos comprometemos a fomentar una comunidad segura y solidaria</h2>
+                <p>Construimos herramientas para que todas las personas se sientan empoderadas y apoyadas en Instagram</p>
+                <button class="btn-primary">Conoce nuestra comunidad</button>
+            </div>
+            <div class="community-image">
+                <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&h=600&fit=crop" alt="Comunidad Instagram" onerror="this.src='https://via.placeholder.com/600x600/405DE6/FFFFFF?text=Comunidad'">
+            </div>
+        </div>
+    </section>
+
+    <!-- Creators Section -->
+    <section class="creators" id="creadores">
+        <div class="creators-container">
+            <div class="section-header">
+                <span class="section-tag">Para Creadores</span>
+                <h2>Destácate en Instagram</h2>
+                <p>Conéctate con más personas, aumenta tu influencia y crea contenido atractivo que te destaque</p>
+            </div>
+            
+            <div class="creators-grid">
+                <div class="creator-card">
+                    <div class="creator-image">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop" alt="Creador 1" onerror="this.src='https://via.placeholder.com/400x400/E1306C/FFFFFF?text=Creador'">
+                    </div>
+                    <div class="creator-info">
+                        <h4>Herramientas creativas</h4>
+                        <p>Filtros, música, stickers y más</p>
+                    </div>
+                </div>
+                
+                <div class="creator-card">
+                    <div class="creator-image">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop" alt="Creador 2" onerror="this.src='https://via.placeholder.com/400x400/833AB4/FFFFFF?text=Creador'">
+                    </div>
+                    <div class="creator-info">
+                        <h4>Monetización</h4>
+                        <p>Gana dinero con tu contenido</p>
+                    </div>
+                </div>
+                
+                <div class="creator-card">
+                    <div class="creator-image">
+                        <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=400&h=400&fit=crop" alt="Creador 3" onerror="this.src='https://via.placeholder.com/400x400/FD1D1D/FFFFFF?text=Creador'">
+                    </div>
+                    <div class="creator-info">
+                        <h4>Analíticas</h4>
+                        <p>Comprende a tu audiencia</p>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="btn-secondary">Visita Instagram para Creadores</button>
+        </div>
+    </section>
+
+    <!-- Business Section -->
+    <section class="business" id="negocios">
+        <div class="business-container">
+            <div class="business-image">
+                <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?w=600&h=600&fit=crop" alt="Negocios Instagram" onerror="this.src='https://via.placeholder.com/600x600/405DE6/FFFFFF?text=Negocios'">
+            </div>
+            <div class="business-content">
+                <span class="section-tag">Para Negocios</span>
+                <h2>Crece con nosotros</h2>
+                <p>Comparte y expande tu marca con nuestra comunidad diversa y global</p>
+                <ul class="business-features">
+                    <li>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                        Alcanza a nuevos clientes
+                    </li>
+                    <li>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                        Vende tus productos directamente
+                    </li>
+                    <li>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                        Crea anuncios efectivos
+                    </li>
+                </ul>
+                <button class="btn-primary">Negocios en Instagram</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section class="download">
+        <div class="download-container">
+            <h2>Descarga la app para iOS o Android</h2>
+            <div class="download-buttons">
+                <a href="#" class="download-badge">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                    </svg>
+                    <div>
+                        <span>Download on the</span>
+                        <strong>App Store</strong>
+                    </div>
+                </a>
+                <a href="#" class="download-badge">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
+                    </svg>
+                    <div>
+                        <span>GET IT ON</span>
+                        <strong>Google Play</strong>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h4>Funciones</h4>
+                    <ul>
+                        <li><a href="#">Reels</a></li>
+                        <li><a href="#">Historias</a></li>
+                        <li><a href="#">MD</a></li>
+                        <li><a href="#">Buscar y explorar</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Seguridad</h4>
+                    <ul>
+                        <li><a href="#">Herramientas de seguridad</a></li>
+                        <li><a href="#">Herramientas de privacidad</a></li>
+                        <li><a href="#">Seguridad de la cuenta</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Comunidad</h4>
+                    <ul>
+                        <li><a href="#">Antibullying</a></li>
+                        <li><a href="#">Padres</a></li>
+                        <li><a href="#">Cuentas de adolescente</a></li>
+                        <li><a href="#">Programas</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Acerca de</h4>
+                    <ul>
+                        <li><a href="#">Nuestra historia</a></li>
+                        <li><a href="#">Liderazgo</a></li>
+                        <li><a href="#">Marca</a></li>
+                        <li><a href="#">Carreras</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-social">
+                    <a href="#" aria-label="Instagram">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                    </a>
+                    <a href="#" aria-label="Facebook">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                        </svg>
+                    </a>
+                    <a href="#" aria-label="Twitter">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                        </svg>
+                    </a>
+                </div>
+                
+                <div class="footer-legal">
+                    <p>© 2025 Instagram from Meta</p>
+                    <div class="footer-links">
+                        <a href="#">Privacidad</a>
+                        <a href="#">Condiciones</a>
+                        <a href="#">API</a>
+                        <a href="#">Mapa del sitio</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

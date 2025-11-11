@@ -1,0 +1,39 @@
+{{!-- Vista: Lista de proyectos --}}
+
+<section class="page-header">
+    <div class="container">
+        <h1 class="page-title">Mis Proyectos</h1>
+        <p class="page-description">Una colección de mis trabajos más recientes</p>
+    </div>
+</section>
+
+<section class="projects-section">
+    <div class="container">
+        
+        {{!-- Filtros --}}
+        <div class="projects-filters">
+            <a href="/projects" class="filter-btn {{#ifEquals filter 'all'}}active{{/ifEquals}}">
+                Todos
+            </a>
+            <a href="/projects?filter=featured" class="filter-btn {{#ifEquals filter 'featured'}}active{{/ifEquals}}">
+                Destacados
+            </a>
+        </div>
+        
+        {{!-- Grid de proyectos --}}
+        {{#if projects}}
+        <div class="projects-grid">
+            {{#each projects}}
+                {{> project-card}}
+            {{/each}}
+        </div>
+        {{else}}
+        <div class="empty-state">
+            <i class="fas fa-folder-open"></i>
+            <h3>No se encontraron proyectos</h3>
+            <p>Intenta con otro filtro</p>
+        </div>
+        {{/if}}
+        
+    </div>
+</section>

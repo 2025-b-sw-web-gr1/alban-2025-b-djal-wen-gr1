@@ -1,0 +1,28 @@
+meta {
+  name: Obtener todas las fotos
+  type: http
+  seq: 13
+}
+
+get {
+  url: https://jsonplaceholder.typicode.com/photos
+  body: none
+  auth: none
+}
+
+docs {
+  # GET /photos
+  
+  Obtiene todas las fotos disponibles.
+  
+  ## Respuesta esperada
+  - Status: 200 OK
+  - Array de 5000 fotos con:
+    - id: number
+    - albumId: number
+    - title: string
+    - url: string
+    - thumbnailUrl: string
+  
+  ⚠️ Nota: Esta petición puede tardar un poco debido a la cantidad de datos.
+}

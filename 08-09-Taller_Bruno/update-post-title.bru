@@ -1,0 +1,41 @@
+meta {
+  name: Actualizar título de post
+  type: http
+  seq: 5
+}
+
+patch {
+  url: https://jsonplaceholder.typicode.com/posts/1
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "title": "updated title"
+  }
+}
+
+docs {
+  # PATCH /posts/:id
+  
+  Actualiza parcialmente un post (solo los campos enviados).
+  
+  ## Parámetros
+  - id: 1 (en la URL)
+  
+  ## Body (JSON)
+  ```json
+  {
+    "title": "updated title"
+  }
+  ```
+  
+  ## Respuesta esperada
+  - Status: 200 OK
+  - Objeto con el título actualizado
+}

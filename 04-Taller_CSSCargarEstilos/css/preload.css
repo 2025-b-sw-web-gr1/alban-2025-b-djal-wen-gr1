@@ -1,0 +1,63 @@
+/* ============================================
+   PRELOAD.CSS - Estilos Precargados
+   ============================================ */
+
+/* Este archivo se precarga pero no se aplica hasta que JavaScript
+   cambie rel="preload" a rel="stylesheet" */
+
+.preloaded-box {
+    background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
+    color: white;
+    padding: 25px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 700;
+    box-shadow: 0 10px 30px rgba(0, 114, 255, 0.3);
+    animation: fadeInScale 0.5s ease-out;
+}
+
+.preloaded-box::before {
+    content: "⚡ ";
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 10px;
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Estilos adicionales para demostrar la precarga */
+.preload-indicator {
+    background: #e3f2fd;
+    border: 2px dashed #2196f3;
+    padding: 15px;
+    border-radius: 6px;
+    text-align: center;
+    color: #1976d2;
+    font-weight: 600;
+}
+
+.preload-indicator.active {
+    background: #c8e6c9;
+    border-color: #4caf50;
+    color: #2e7d32;
+    animation: pulse 1s ease-in-out;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}

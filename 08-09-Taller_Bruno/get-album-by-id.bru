@@ -1,0 +1,27 @@
+meta {
+  name: Obtener álbum por ID
+  type: http
+  seq: 11
+}
+
+get {
+  url: https://jsonplaceholder.typicode.com/albums/1
+  body: none
+  auth: none
+}
+
+docs {
+  # GET /albums/:id
+  
+  Obtiene un álbum específico por su ID.
+  
+  ## Parámetros
+  - id: 1 (en la URL)
+  
+  ## Respuesta esperada
+  - Status: 200 OK
+  - Objeto álbum con:
+    - id: 1
+    - title: string
+    - userId: number
+}

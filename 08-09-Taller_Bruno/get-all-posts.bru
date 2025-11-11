@@ -1,0 +1,25 @@
+meta {
+  name: Obtener todos los posts
+  type: http
+  seq: 1
+}
+
+get {
+  url: https://jsonplaceholder.typicode.com/posts
+  body: none
+  auth: none
+}
+
+docs {
+  # GET /posts
+  
+  Obtiene todos los posts disponibles en JSONPlaceholder.
+  
+  ## Respuesta esperada
+  - Status: 200 OK
+  - Array de 100 posts con estructura:
+    - id: number
+    - title: string
+    - body: string
+    - userId: number
+}

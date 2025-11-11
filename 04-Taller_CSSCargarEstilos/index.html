@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taller CSS - Formas de Cargar Estilos</title>
+    
+    <!-- ============================================
+         DIFERENTES FORMAS DE CARGAR CSS
+         ============================================ -->
+    
+    <!-- 1. Hoja de Estilos Externa (MEJOR PRÁCTICA) -->
+    <link rel="stylesheet" href="css/base.css">
+    
+    <!-- 2. Carga Condicional con media="print" -->
+    <link rel="stylesheet" href="css/print.css" media="print">
+    
+    <!-- 3. Precarga de CSS (preload) - Se activa con JS -->
+    <link rel="preload" as="style" href="css/preload.css" id="preload-style">
+    
+    <!-- 4. Estilos Internos en bloque <style> -->
+    <style>
+        /* Estilos internos - Demostración */
+        .internal-style-box {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(67, 233, 123, 0.3);
+        }
+        
+        .internal-style-box::before {
+            content: "📝 ";
+            font-size: 1.5rem;
+            margin-right: 10px;
+        }
+    </style>
+    
+    <!-- 5. @import dentro de <style> (NO RECOMENDADO EN PRODUCCIÓN) -->
+    <style>
+        @import url("css/imported-from-style.css");
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        
+        <!-- Header -->
+        <header>
+            <h1>🎨 Taller: Formas de Cargar CSS</h1>
+            <p>Proyecto interactivo sobre las diferentes técnicas de carga de estilos</p>
+        </header>
+        
+        <!-- Main Content -->
+        <main>
+            
+            <!-- Introducción -->
+            <section class="demo-section">
+                <h2>📚 Introducción</h2>
+                <div class="explanation">
+                    <p>
+                        Este proyecto demuestra las <strong>8 formas principales</strong> de cargar y aplicar 
+                        estilos CSS en una página web. Cada método tiene sus propias ventajas, desventajas y 
+                        casos de uso específicos.
+                    </p>
+                </div>
+                <div class="alert alert-info">
+                    <strong>💡 Nota Importante:</strong> Para las demostraciones de carga dinámica, 
+                    asegúrate de ejecutar este proyecto con un servidor HTTP usando <code>npm start</code>.
+                </div>
+            </section>
+            
+            <!-- Demo 1: Estilos en Línea (Inline) -->
+            <section class="demo-section" data-demo="inline">
+                <h2>1️⃣ Estilos en Línea (Inline Styles)</h2>
+                
+                <div class="demo-box" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); color: white; font-weight: bold; padding: 25px; border-radius: 10px; box-shadow: 0 5px 15px rgba(250, 112, 154, 0.3);">
+                    🎯 Este elemento usa estilos en línea con el atributo style=""
+                </div>
+                
+                <div class="explanation">
+                    <h3>📖 Explicación</h3>
+                    <p>
+                        Los <strong>estilos en línea</strong> se aplican directamente en el atributo 
+                        <code>style=""</code> de un elemento HTML.
+                    </p>
+                    <p><strong>Ventajas:</strong></p>
+                    <ul>
+                        <li>Alta especificidad - sobrescribe otros estilos</li>
+                        <li>Útil para estilos dinámicos generados con JavaScript</li>
+                    </ul>
+                    <p><strong>Desventajas:</strong></p>
+                    <ul>
+                        <li>❌ Viola el principio de separación de responsabilidades</li>
+                        <li>❌ Difícil de mantener y reutilizar</li>
+                        <li>❌ No se puede cachear</li>
+                        <li>❌ Aumenta el tamaño del HTML</li>
+                    </ul>
+                </div>
+                
+                <div class="alert alert-warning">
+                    <strong>⚠️ Recomendación:</strong> Evita usar estilos en línea excepto para 
+                    casos muy específicos o estilos dinámicos generados por JavaScript.
+                </div>
+                
+                <div class="code-block">
+&lt;div style="background: #fa709a; color: white;"&gt;
+    Contenido con estilos en línea
+&lt;/div&gt;
+                </div>
+            </section>
+            
+            <!-- Demo 2: Estilos Internos -->
+            <section class="demo-section" data-demo="internal">
+                <h2>2️⃣ Estilos Internos (Internal Styles)</h2>
+                
+                <div class="demo-box internal-style-box">
+                    Este elemento usa estilos del bloque &lt;style&gt; en el &lt;head&gt;
+                </div>
+                
+                <div class="explanation">
+                    <h3>📖 Explicación</h3>
+                    <p>
+                        Los <strong>estilos internos</strong> se definen dentro de un bloque 
+                        <code>&lt;style&gt;</code> en el <code>&lt;head&gt;</code> del documento HTML.
+                    </p>
+                    <p><strong>Ventajas:</strong></p>
+                    <ul>
+                        <li>Útil para estilos específicos de una sola página</li>
+                        <li>No requiere petición HTTP adicional</li>
+                        <li>Carga más rápida para páginas pequeñas</li>
+                    </ul>
+                    <p><strong>Desventajas:</strong></p>
+                    <ul>
+                        <li>❌ No se puede cachear entre páginas</li>
+                        <li>❌ No se puede reutilizar en otras páginas</li>
+                        <li>❌ Aumenta el tamaño del HTML</li>
+                    </ul>
+                </div>
+                
+                <div class="code-block">
+&lt;head&gt;
+    &lt;style&gt;
+        .internal-style-box {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            color: white;
+            padding: 20px;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+                </div>
+            </section>
+            
+            <!-- Demo 3: @import desde <style> -->
+            <section class="demo-section" data-demo="import">
+                <h2>3️⃣ @import desde &lt;style&gt;</h2>
+                
+                <div class="demo-box imported-style-box">
+                    Este elemento usa estilos importados con @import url()
+                </div>
+                
+                <div class="explanation">
+                    <h3>📖 Explicación</h3>
+                    <p>
+                        El método <code>@import</code> permite importar hojas de estilo desde dentro 
+                        de un bloque <code>&lt;style&gt;</code> o desde otro archivo CSS.
+                    </p>
+                    <p><strong>Sintaxis:</strong></p>
+                    <div class="code-block">
+&lt;style&gt;
+    @import url("css/imported-from-style.css");
+&lt;/style&gt;
+                    </div>
+                    <p><strong>Desventajas Importantes:</strong></p>
+                    <ul>
+                        <li>❌ <strong>Bloquea el renderizado</strong> - el navegador debe esperar</li>
+                        <li>❌ Carga en serie, no en paralelo (más lento)</li>
+                        <li>❌ Problemas de rendimiento en producción</li>
+                        <li>❌ No se recomienda para archivos críticos</li>
+                    </ul>
+                </div>
+                
+                <div class="alert alert-warning">
+                    <strong>⚠️ Advertencia:</strong> Evita <code>@import</code> en producción. 
+                    Es mejor usar múltiples elementos <code>&lt;link&gt;</code> que se cargan en paralelo.
+                </div>
+            </section>
+            
+            <!-- Demo 4: Hoja Externa -->
+            <section class="demo-section" data-demo="external">
+                <h2>4️⃣ Hoja de Estilos Externa (External Stylesheet)</h2>
+                
+                <div class="demo-box">
+                    ✅ Este elemento usa estilos de css/base.css cargado con &lt;link&gt;
+                </div>
+                
+                <div class="explanation">
+                    <h3>📖 Explicación</h3>
+                    <p>
+                        Las <strong>hojas de estilo externas</strong> se cargan usando el elemento 
+                        <code>&lt;link rel="stylesheet"&gt;</code> en el <code>&lt;head&gt;</code>.
+                    </p>
+                    <p><strong>Ventajas (MEJOR PRÁCTICA):</strong></p>
+                    <ul>
+                        <li>✅ <strong>Separación de responsabilidades</strong> - HTML y CSS separados</li>
+                        <li>✅ <strong>Reutilizable</strong> en múltiples páginas</li>
+                        <li>✅ <strong>Cacheable</strong> - mejora el rendimiento</li>
+                        <li>✅ <strong>Mantenible</strong> - más fácil de actualizar</li>
+                        <li>✅ Carga en paralelo con otros recursos</li>
+                    </ul>
+                </div>
+                
+                <div class="alert alert-success">
+                    <strong>✅ Recomendación:</strong> Este es el método preferido para la mayoría 
+                    de los casos. Usa <code>&lt;link rel="stylesheet"&gt;</code> para tus archivos CSS.
+                </div>
+                
+                <div class="code-block">
+&lt;head&gt;
+    &lt;link rel="stylesheet" href="css/base.css"&gt;
+    &lt;link rel="stylesheet" href="css/estilos.css"&gt;
+&lt;/head&gt;
+                </div>
+                
+                <div class="grid">
+                    <div class="grid-item">
+                        <span class="badge badge-primary">Badge Importado</span>
+                        <p>Este badge viene de css/imported.css</p>
+                    </div>
+                    <div class="grid-item">
+                        <span class="highlight">Texto resaltado</span>
+                        <p>Este estilo también viene de imported.css</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Demo 5: Carga Condicional (media="print") -->
+            <section class="demo-section" data-demo="print">
+                <h2>5️⃣ Carga Condicional (media="print")</h2>
+                
+                <div class="demo-box">
+                    📄 Usa Ctrl+P (Cmd+P en Mac) para ver los estilos de impresión
+                </div>
+                
+                <button id="btn-print-preview" class="btn">
+                    🖨️ Abrir Vista Previa de Impresión
+                </button>
+                
+                <div class="explanation">
+                    <h3>📖 Explicación</h3>
+                    <p>
+                        El atributo <code>media</code> permite cargar estilos solo cuando se cumple 
+                        una condición específica, como la impresión o un tamaño de pantalla.
+                    </p>
+                    <div class="code-block">
+&lt;link rel="stylesheet" href="css/print.css" media="print"&gt;
+                    </div>
+                    <p><strong>Casos de uso:</strong></p>
+                    <ul>
+                        <li><code>media="print"</code> - Solo para impresión</li>
+                        <li><code>media="screen"</code> - Solo para pantallas</li>
+                        <li><code>media="(max-width: 768px)"</code> - Responsive</li>
+                    </ul>
+                    <p><strong>Ventajas:</strong></p>
+                    <ul>
+                        <li>✅ Carga condicional según el contexto</li>
+                        <li>✅ Optimización de recursos</li>
+                        <li>✅ Mejora el rendimiento inicial</li>
+                    </ul>
+                </div>
+                
+                <div class="alert alert-info">
+                    <strong>💡 Pruébalo:</strong> Presiona <code>Ctrl+P</code> (o <code>Cmd+P</code>) 
+                    para ver cómo cambian los estilos en la vista de impresión. Los botones y elementos 
+                    decorativos desaparecerán.
+                </div>
+            </section>
+            
+            <!-- Demo 6: Precarga (preload + swap) -->
+            <section class="demo-section" data-demo="preload">
+                <h2>6️⃣ Precarga de CSS (Preload)</h2>
+                
+                <div class="preload-indicator">
+                    ⏳ Estilos precargados pero NO aplicados. Haz clic para activarlos.
+                </div>
+                
+                <button id="btn-activate-preload" class="btn">
+                    ⚡ Activar Estilos Precargados
+                </button>
+                
+                <div class="demo-box preloaded-box" style="display: none;">
+                    Estilos precargados activados
+                </div>
+                
+                <div class="explanation">
+                    <h3>📖 Explicación</h3>
+                    <p>
+                        La <strong>precarga</strong> con <code>rel="preload"</code> permite descargar 
+                        un archivo CSS de forma anticipada sin aplicarlo inmediatamente.
+                    </p>
+                    <div class="code-block">
+&lt;!-- En el HEAD: Precargar sin aplicar --&gt;
+&lt;link rel="preload" as="style" href="css/preload.css" id="preload-style"&gt;
+
+&lt;!-- JavaScript lo activa después --&gt;
+&lt;script&gt;
+    document.getElementById('preload-style').rel = 'stylesheet';
+&lt;/script&gt;
+                    </div>
+                    <p><strong>Ventajas:</strong></p>
+                    <ul>
+                        <li>✅ <strong>No bloquea el renderizado inicial</strong></li>
+                        <li>✅ Descarga CSS no crítico de forma anticipada</li>
+                        <li>✅ Activación instantánea cuando se necesita</li>
+                        <li>✅ Mejora el rendimiento percibido</li>
+                    </ul>
+                    <p><strong>Casos de uso:</strong></p>
+                    <ul>
+                        <li>Estilos de secciones "below the fold" (no visibles inicialmente)</li>
+                        <li>Temas alternativos que se activan con JS</li>
+                        <li>Estilos de componentes cargados bajo demanda</li>
+                    </ul>
+                </div>
+                
+                <div class="alert alert-success">
+                    <strong>✅ Beneficio:</strong> El archivo ya está descargado y en caché. 
+                    Cuando lo actives con JavaScript, se aplicará instantáneamente sin nueva petición HTTP.
+                </div>
+            </section>
+            
+            <!-- Demo 7: Carga Dinámica con <link> + JS -->
+            <section class="demo-section" data-demo="dynamic-link">
+                <h2>7️⃣ Carga Dinámica con JavaScript (&lt;link&gt;)</h2>
+                
+                <button id="btn-load-dark-theme" class="btn">
+                    🌙 Cargar Tema Oscuro Dinámicamente
+                </button>
+                
+                <div class="explanation">
+                    <h3>📖 Explicación</h3>
+                    <p>
+                        JavaScript puede crear dinámicamente un elemento <code>&lt;link&gt;</code> 
+                        e insertarlo en el DOM para cargar CSS bajo demanda.
+                    </p>
+                    <div class="code-block">
+// Crear elemento &lt;link&gt; con JavaScript
+const link = document.createElement('link');
+link.rel = 'stylesheet';
+link.href = 'css/theme-dark.css';
+
+// Insertar en el &lt;head&gt;
+document.head.appendChild(link);
+
+// Aplicar clase al body
+document.body.classList.add('dark-theme');
+                    </div>
+                    <p><strong>Ventajas:</strong></p>
+                    <ul>
+                        <li>✅ Carga bajo demanda (lazy loading)</li>
+                        <li>✅ Reduce el tamaño inicial de la página</li>
+                        <li>✅ Ideal para temas alternativos o componentes opcionales</li>
+                        <li>✅ El archivo se cachea normalmente</li>
+                    </ul>
+                    <p><strong>Casos de uso:</strong></p>
+                    <ul>
+                        <li>Temas (claro/oscuro)</li>
+                        <li>Estilos de módulos cargados con lazy loading</li>
+                        <li>Personalización basada en preferencias del usuario</li>
+                    </ul>
+                </div>
+                
+                <div class="alert alert-info">
+                    <strong>💡 Pruébalo:</strong> Haz clic en el botón para cargar dinámicamente 
+                    el tema oscuro. El archivo CSS se descargará y aplicará mediante JavaScript.
+                </div>
+            </section>
+            
+            <!-- Demo 8: Fetch + Inyección -->
+            <section class="demo-section" data-demo="fetch">
+                <h2>8️⃣ Carga con Fetch API + Inyección de &lt;style&gt;</h2>
+                
+                <button id="btn-load-with-fetch" class="btn">
+                    🚀 Cargar CSS con Fetch API
+                </button>
+                
+                <div id="fetch-demo-container">
+                    <div class="demo-box">
+                        📥 Estilos aún no cargados. Haz clic para descargarlos con Fetch.
+                    </div>
+                </div>
+                
+                <div class="explanation">
+                    <h3>📖 Explicación</h3>
+                    <p>
+                        Este método usa la <strong>Fetch API</strong> para descargar el archivo CSS 
+                        como texto, y luego lo inyecta en un elemento <code>&lt;style&gt;</code> 
+                        creado dinámicamente.
+                    </p>
+                    <div class="code-block">
+// Descargar CSS con Fetch API
+fetch('css/text-snippet.css')
+    .then(response => response.text())
+    .then(cssText => {
+        // Crear elemento &lt;style&gt;
+        const style = document.createElement('style');
+        style.textContent = cssText;
+        
+        // Insertar en el &lt;head&gt;
+        document.head.appendChild(style);
+    });
+                    </div>
+                    <p><strong>Casos de uso:</strong></p>
+                    <ul>
+                        <li>Cuando necesitas manipular el CSS antes de aplicarlo</li>
+                        <li>Inyección de variables CSS dinámicas</li>
+                        <li>Control total sobre cuándo y cómo se aplican los estilos</li>
+                    </ul>
+                    <p><strong>Consideraciones:</strong></p>
+                    <ul>
+                        <li>⚠️ Requiere un servidor HTTP (CORS)</li>
+                        <li>⚠️ No se cachea de la misma forma que <code>&lt;link&gt;</code></li>
+                        <li>⚠️ Más complejo que otros métodos</li>
+                    </ul>
+                </div>
+                
+                <div class="alert alert-warning">
+                    <strong>⚠️ Nota:</strong> Este método requiere que ejecutes el proyecto con 
+                    <code>npm start</code> para evitar problemas de CORS.
+                </div>
+            </section>
+            
+            <!-- Resumen y Mejores Prácticas -->
+            <section class="demo-section">
+                <h2>📋 Resumen y Mejores Prácticas</h2>
+                
+                <div class="explanation">
+                    <h3>✅ Recomendaciones Generales</h3>
+                    <ol>
+                        <li>
+                            <strong>Usa <code>&lt;link rel="stylesheet"&gt;</code></strong> como método principal.
+                            Es la mejor práctica para la mayoría de los casos.
+                        </li>
+                        <li>
+                            <strong>Evita <code>@import</code></strong> en producción, ya que bloquea el 
+                            renderizado y reduce el rendimiento.
+                        </li>
+                        <li>
+                            <strong>Minimiza los estilos en línea</strong>. Solo úsalos para casos muy 
+                            específicos o valores dinámicos.
+                        </li>
+                        <li>
+                            <strong>Usa <code>media</code></strong> para cargas condicionales 
+                            (impresión, responsive, etc.).
+                        </li>
+                        <li>
+                            <strong>Considera <code>preload</code></strong> para CSS no crítico 
+                            que se necesitará pronto.
+                        </li>
+                        <li>
+                            <strong>Carga dinámica con JS</strong> es útil para temas y componentes 
+                            bajo demanda.
+                        </li>
+                    </ol>
+                </div>
+                
+                <div class="grid">
+                    <div class="grid-item">
+                        <h3 style="color: #4caf50;">✅ HACER</h3>
+                        <ul>
+                            <li>Usar <code>&lt;link&gt;</code></li>
+                            <li>Separar CSS del HTML</li>
+                            <li>Aprovechar el caché</li>
+                            <li>Usar <code>preload</code> inteligentemente</li>
+                        </ul>
+                    </div>
+                    <div class="grid-item">
+                        <h3 style="color: #f44336;">❌ EVITAR</h3>
+                        <ul>
+                            <li>Estilos en línea excesivos</li>
+                            <li><code>@import</code> en producción</li>
+                            <li>Cargar todo el CSS de golpe</li>
+                            <li>Ignorar el rendimiento</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="alert alert-success">
+                    <strong>🎯 Objetivo Alcanzado:</strong> Ahora conoces las 8 formas principales 
+                    de cargar CSS y cuándo usar cada una. ¡Elige la técnica adecuada según tus necesidades!
+                </div>
+            </section>
+            
+        </main>
+        
+        <!-- Footer -->
+        <footer>
+            <p><strong>🎨 Taller CSS - Formas de Cargar Estilos</strong></p>
+            <p>Proyecto educativo interactivo | 2025</p>
+            <p>
+                <strong>Ejecutar:</strong> <code>npm start</code> | 
+                <strong>Puerto:</strong> 8080
+            </p>
+        </footer>
+        
+    </div>
+    
+    <!-- JavaScript para carga dinámica -->
+    <script src="js/loader.js"></script>
+    
+</body>
+</html>

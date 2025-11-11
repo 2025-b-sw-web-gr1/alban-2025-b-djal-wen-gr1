@@ -1,0 +1,24 @@
+meta {
+  name: Obtener usuario por ID
+  type: http
+  seq: 19
+}
+
+get {
+  url: https://jsonplaceholder.typicode.com/users/1
+  body: none
+  auth: none
+}
+
+docs {
+  # GET /users/:id
+  
+  Obtiene un usuario específico por su ID.
+  
+  ## Parámetros
+  - id: 1 (en la URL)
+  
+  ## Respuesta esperada
+  - Status: 200 OK
+  - Objeto usuario completo con todos sus datos
+}

@@ -1,0 +1,135 @@
+{{!-- Vista: Contacto --}}
+
+<section class="page-header">
+    <div class="container">
+        <h1 class="page-title">Contacto</h1>
+        <p class="page-description">¿Tienes un proyecto en mente? ¡Hablemos!</p>
+    </div>
+</section>
+
+<section class="contact-section">
+    <div class="container">
+        
+        {{#if success}}
+        <div class="alert alert-success">
+            <i class="fas fa-check-circle"></i>
+            <div>
+                <h3>¡Mensaje enviado!</h3>
+                <p>Gracias por contactarme. Te responderé lo antes posible.</p>
+            </div>
+        </div>
+        {{/if}}
+        
+        <div class="contact-grid">
+            
+            {{!-- Información de contacto --}}
+            <div class="contact-info">
+                <h2>Información de Contacto</h2>
+                <p>No dudes en ponerte en contacto conmigo. Estoy disponible para nuevos proyectos y oportunidades.</p>
+                
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Email</h4>
+                            <a href="mailto:{{profile.email}}">{{profile.email}}</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Teléfono</h4>
+                            <p>{{profile.phone}}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Ubicación</h4>
+                            <p>{{profile.location}}</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-social">
+                    <h4>Sígueme en redes</h4>
+                    <div class="social-links-large">
+                        <a href="{{profile.social.github}}" target="_blank" class="social-link">
+                            <i class="fab fa-github"></i>
+                            <span>GitHub</span>
+                        </a>
+                        <a href="{{profile.social.linkedin}}" target="_blank" class="social-link">
+                            <i class="fab fa-linkedin"></i>
+                            <span>LinkedIn</span>
+                        </a>
+                        <a href="{{profile.social.twitter}}" target="_blank" class="social-link">
+                            <i class="fab fa-twitter"></i>
+                            <span>Twitter</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            {{!-- Formulario de contacto --}}
+            <div class="contact-form-wrapper">
+                <h2>Envíame un Mensaje</h2>
+                
+                <form action="/contact" method="POST" class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Nombre Completo *</label>
+                        <input 
+                            type="text" 
+                            id="name" 
+                            name="name" 
+                            required
+                            placeholder="Tu nombre">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            required
+                            placeholder="tu@email.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">Asunto *</label>
+                        <input 
+                            type="text" 
+                            id="subject" 
+                            name="subject" 
+                            required
+                            placeholder="Asunto del mensaje">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Mensaje *</label>
+                        <textarea 
+                            id="message" 
+                            name="message" 
+                            rows="6" 
+                            required
+                            placeholder="Escribe tu mensaje aquí..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-block">
+                        <i class="fas fa-paper-plane"></i>
+                        Enviar Mensaje
+                    </button>
+                </form>
+            </div>
+            
+        </div>
+    </div>
+</section>

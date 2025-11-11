@@ -1,0 +1,116 @@
+{{!-- Vista: Página principal --}}
+
+{{!-- Hero Section --}}
+<section class="hero">
+    <div class="hero-container">
+        <div class="hero-content">
+            <div class="hero-greeting">👋 Hola, soy</div>
+            <h1 class="hero-title">{{profile.name}}</h1>
+            <h2 class="hero-subtitle">{{profile.title}}</h2>
+            <p class="hero-bio">{{profile.bio}}</p>
+            
+            <div class="hero-actions">
+                <a href="/projects" class="btn btn-primary">
+                    <i class="fas fa-briefcase"></i>
+                    Ver Proyectos
+                </a>
+                <a href="/contact" class="btn btn-secondary">
+                    <i class="fas fa-envelope"></i>
+                    Contactar
+                </a>
+            </div>
+            
+            <div class="hero-social">
+                <a href="{{profile.social.github}}" target="_blank" class="social-icon">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="{{profile.social.linkedin}}" target="_blank" class="social-icon">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="{{profile.social.twitter}}" target="_blank" class="social-icon">
+                    <i class="fab fa-twitter"></i>
+                </a>
+            </div>
+        </div>
+        
+        <div class="hero-image">
+            <div class="hero-avatar">
+                <img src="{{profile.avatar}}" alt="{{profile.name}}" onerror="this.src='/images/avatar-placeholder.jpg'">
+            </div>
+        </div>
+    </div>
+</section>
+
+{{!-- Stats Section --}}
+<section class="stats-section">
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-briefcase"></i>
+                </div>
+                <div class="stat-content">
+                    <h3 class="stat-number">{{experienceYears}}+</h3>
+                    <p class="stat-label">Años de Experiencia</p>
+                </div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-project-diagram"></i>
+                </div>
+                <div class="stat-content">
+                    <h3 class="stat-number">{{projectsCount}}+</h3>
+                    <p class="stat-label">Proyectos Completados</p>
+                </div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <div class="stat-content">
+                    <h3 class="stat-number">{{skillsCount}}+</h3>
+                    <p class="stat-label">Tecnologías Dominadas</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{{!-- Featured Projects Section --}}
+<section class="featured-projects">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Proyectos Destacados</h2>
+            <p class="section-description">Algunos de mis mejores trabajos</p>
+        </div>
+        
+        <div class="projects-grid">
+            {{#each featuredProjects}}
+                {{> project-card}}
+            {{/each}}
+        </div>
+        
+        <div class="section-footer">
+            <a href="/projects" class="btn btn-outline">
+                Ver Todos los Proyectos
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+{{!-- CTA Section --}}
+<section class="cta-section">
+    <div class="container">
+        <div class="cta-content">
+            <h2>¿Tienes un proyecto en mente?</h2>
+            <p>Estoy disponible para nuevos proyectos y colaboraciones</p>
+            <a href="/contact" class="btn btn-primary btn-lg">
+                <i class="fas fa-paper-plane"></i>
+                Contáctame
+            </a>
+        </div>
+    </div>
+</section>

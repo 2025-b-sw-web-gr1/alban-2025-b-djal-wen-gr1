@@ -1,0 +1,25 @@
+meta {
+  name: Obtener todas las tareas
+  type: http
+  seq: 15
+}
+
+get {
+  url: https://jsonplaceholder.typicode.com/todos
+  body: none
+  auth: none
+}
+
+docs {
+  # GET /todos
+  
+  Obtiene todas las tareas (todos) disponibles.
+  
+  ## Respuesta esperada
+  - Status: 200 OK
+  - Array de 200 tareas con:
+    - id: number
+    - title: string
+    - completed: boolean
+    - userId: number
+}

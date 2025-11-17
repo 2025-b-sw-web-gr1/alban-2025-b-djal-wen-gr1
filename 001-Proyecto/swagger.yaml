@@ -1,0 +1,619 @@
+openapi: 3.0.0
+info:
+  title: API de Biblioteca y Libros
+  description: |
+    ## API RESTful para gestión de bibliotecas y libros
+    
+    Esta API permite gestionar bibliotecas y sus libros asociados, demostrando una relación **1 a muchos**:
+    - Una biblioteca puede tener muchos libros
+    - Cada libro pertenece a una sola biblioteca
+    
+    ### Características:
+    - Operaciones CRUD completas para bibliotecas y libros
+    - Endpoint especial para obtener libros por biblioteca
+    - Validaciones de datos
+    - Códigos de estado HTTP apropiados
+    
+    ### Autor:
+    - **Nombre**: Dorian Joel Alban Lucas
+    - **Curso**: Aplicaciones Web - Semestre 2025B
+    - **Fecha**: 16 de Noviembre de 2025
+    
+  version: 1.0.0
+  contact:
+    name: Dorian Joel Alban Lucas
+    email: dorian.alban@epn.edu.ec
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+servers:
+  - url: https://api.biblioteca.com/v1
+    description: Servidor de producción
+  - url: http://localhost:3000/v1
+    description: Servidor de desarrollo
+
+tags:
+  - name: Libraries
+    description: Operaciones relacionadas con bibliotecas
+  - name: Books
+    description: Operaciones relacionadas con libros
+
+paths:
+  # ==========================================
+  # LIBRARIES ENDPOINTS
+  # ==========================================
+  /libraries:
+    get:
+      tags:
+        - Libraries
+      summary: Obtener todas las bibliotecas
+      description: Retorna una lista completa de todas las bibliotecas registradas
+      operationId: getAllLibraries
+      responses:
+        '200':
+          description: Lista de bibliotecas obtenida exitosamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Library'
+              example:
+                - id: 1
+                  name: "Biblioteca Central"
+                  address: "Av. Principal 123"
+                  city: "Quito"
+                  country: "Ecuador"
+                - id: 2
+                  name: "Biblioteca Municipal"
+                  address: "Calle Secundaria 456"
+                  city: "Guayaquil"
+                  country: "Ecuador"
+        '500':
+          description: Error interno del servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    post:
+      tags:
+        - Libraries
+      summary: Crear nueva biblioteca
+      description: Crea una nueva biblioteca en el sistema
+      operationId: createLibrary
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LibraryInput'
+            example:
+              name: "Biblioteca Nacional"
+              address: "Av. 6 de Diciembre y Patria"
+              city: "Quito"
+              country: "Ecuador"
+      responses:
+        '201':
+          description: Biblioteca creada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Library'
+              example:
+                id: 3
+                name: "Biblioteca Nacional"
+                address: "Av. 6 de Diciembre y Patria"
+                city: "Quito"
+                country: "Ecuador"
+        '400':
+          description: Datos de entrada inválidos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /libraries/{id}:
+    get:
+      tags:
+        - Libraries
+      summary: Obtener biblioteca por ID
+      description: Retorna una biblioteca específica basada en su ID
+      operationId: getLibraryById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID de la biblioteca a obtener
+          schema:
+            type: integer
+            minimum: 1
+          example: 1
+      responses:
+        '200':
+          description: Biblioteca encontrada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Library'
+              example:
+                id: 1
+                name: "Biblioteca Central"
+                address: "Av. Principal 123"
+                city: "Quito"
+                country: "Ecuador"
+        '404':
+          description: Biblioteca no encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    put:
+      tags:
+        - Libraries
+      summary: Actualizar biblioteca completa
+      description: Actualiza todos los campos de una biblioteca existente
+      operationId: updateLibrary
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID de la biblioteca a actualizar
+          schema:
+            type: integer
+          example: 1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LibraryInput'
+            example:
+              name: "Biblioteca Central Actualizada"
+              address: "Av. Principal 123 - Edificio Nuevo"
+              city: "Quito"
+              country: "Ecuador"
+      responses:
+        '200':
+          description: Biblioteca actualizada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Library'
+        '400':
+          description: Datos de entrada inválidos
+        '404':
+          description: Biblioteca no encontrada
+
+    delete:
+      tags:
+        - Libraries
+      summary: Eliminar biblioteca
+      description: |
+        Elimina una biblioteca por su ID.
+        ⚠️ **Nota**: Solo se puede eliminar si no tiene libros asociados.
+      operationId: deleteLibrary
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID de la biblioteca a eliminar
+          schema:
+            type: integer
+          example: 1
+      responses:
+        '204':
+          description: Biblioteca eliminada exitosamente
+        '400':
+          description: No se puede eliminar (tiene libros asociados)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Biblioteca no encontrada
+
+  # ==========================================
+  # BOOKS ENDPOINTS
+  # ==========================================
+  /books:
+    get:
+      tags:
+        - Books
+      summary: Obtener todos los libros
+      description: Retorna una lista completa de todos los libros registrados
+      operationId: getAllBooks
+      responses:
+        '200':
+          description: Lista de libros obtenida exitosamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Book'
+              example:
+                - id: 1
+                  title: "Cien Años de Soledad"
+                  author: "Gabriel García Márquez"
+                  isbn: "978-0307474728"
+                  publishedYear: 1967
+                  genre: "Realismo mágico"
+                  libraryId: 1
+                - id: 2
+                  title: "Don Quijote de la Mancha"
+                  author: "Miguel de Cervantes"
+                  isbn: "978-8424936464"
+                  publishedYear: 1605
+                  genre: "Novela"
+                  libraryId: 1
+        '500':
+          description: Error interno del servidor
+
+    post:
+      tags:
+        - Books
+      summary: Crear nuevo libro
+      description: Crea un nuevo libro y lo asocia a una biblioteca
+      operationId: createBook
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BookInput'
+            example:
+              title: "El Principito"
+              author: "Antoine de Saint-Exupéry"
+              isbn: "978-0156012195"
+              publishedYear: 1943
+              genre: "Fábula"
+              libraryId: 1
+      responses:
+        '201':
+          description: Libro creado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Book'
+              example:
+                id: 3
+                title: "El Principito"
+                author: "Antoine de Saint-Exupéry"
+                isbn: "978-0156012195"
+                publishedYear: 1943
+                genre: "Fábula"
+                libraryId: 1
+        '400':
+          description: Datos de entrada inválidos o biblioteca no existe
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /books/{id}:
+    get:
+      tags:
+        - Books
+      summary: Obtener libro por ID
+      description: Retorna un libro específico basado en su ID
+      operationId: getBookById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID del libro a obtener
+          schema:
+            type: integer
+            minimum: 1
+          example: 1
+      responses:
+        '200':
+          description: Libro encontrado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Book'
+              example:
+                id: 1
+                title: "Cien Años de Soledad"
+                author: "Gabriel García Márquez"
+                isbn: "978-0307474728"
+                publishedYear: 1967
+                genre: "Realismo mágico"
+                libraryId: 1
+        '404':
+          description: Libro no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    put:
+      tags:
+        - Books
+      summary: Actualizar libro completo
+      description: Actualiza todos los campos de un libro existente
+      operationId: updateBook
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID del libro a actualizar
+          schema:
+            type: integer
+          example: 1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BookInput'
+            example:
+              title: "Cien Años de Soledad - Edición Especial"
+              author: "Gabriel García Márquez"
+              isbn: "978-0307474728"
+              publishedYear: 1967
+              genre: "Realismo mágico"
+              libraryId: 1
+      responses:
+        '200':
+          description: Libro actualizado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Book'
+        '400':
+          description: Datos de entrada inválidos
+        '404':
+          description: Libro no encontrado
+
+    delete:
+      tags:
+        - Books
+      summary: Eliminar libro
+      description: Elimina un libro por su ID
+      operationId: deleteBook
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID del libro a eliminar
+          schema:
+            type: integer
+          example: 1
+      responses:
+        '204':
+          description: Libro eliminado exitosamente
+        '404':
+          description: Libro no encontrado
+
+  # ==========================================
+  # RELATIONSHIP ENDPOINT
+  # ==========================================
+  /libraries/{id}/books:
+    get:
+      tags:
+        - Books
+        - Libraries
+      summary: Obtener libros de una biblioteca
+      description: |
+        Retorna todos los libros que pertenecen a una biblioteca específica.
+        Este endpoint demuestra la relación 1 a muchos entre bibliotecas y libros.
+      operationId: getBooksByLibrary
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID de la biblioteca
+          schema:
+            type: integer
+            minimum: 1
+          example: 1
+      responses:
+        '200':
+          description: Lista de libros de la biblioteca obtenida exitosamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Book'
+              example:
+                - id: 1
+                  title: "Cien Años de Soledad"
+                  author: "Gabriel García Márquez"
+                  isbn: "978-0307474728"
+                  publishedYear: 1967
+                  genre: "Realismo mágico"
+                  libraryId: 1
+                - id: 2
+                  title: "Don Quijote de la Mancha"
+                  author: "Miguel de Cervantes"
+                  isbn: "978-8424936464"
+                  publishedYear: 1605
+                  genre: "Novela"
+                  libraryId: 1
+        '404':
+          description: Biblioteca no encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+# ==========================================
+# COMPONENTS / SCHEMAS
+# ==========================================
+components:
+  schemas:
+    # LIBRARY SCHEMAS
+    Library:
+      type: object
+      required:
+        - id
+        - name
+        - address
+        - city
+        - country
+      properties:
+        id:
+          type: integer
+          description: ID único de la biblioteca
+          example: 1
+        name:
+          type: string
+          description: Nombre de la biblioteca
+          example: "Biblioteca Central"
+        address:
+          type: string
+          description: Dirección física de la biblioteca
+          example: "Av. Principal 123"
+        city:
+          type: string
+          description: Ciudad donde se ubica la biblioteca
+          example: "Quito"
+        country:
+          type: string
+          description: País donde se ubica la biblioteca
+          example: "Ecuador"
+
+    LibraryInput:
+      type: object
+      required:
+        - name
+        - address
+        - city
+        - country
+      properties:
+        name:
+          type: string
+          minLength: 3
+          maxLength: 100
+          description: Nombre de la biblioteca
+          example: "Biblioteca Nacional"
+        address:
+          type: string
+          minLength: 5
+          maxLength: 200
+          description: Dirección física
+          example: "Av. 6 de Diciembre y Patria"
+        city:
+          type: string
+          minLength: 2
+          maxLength: 50
+          description: Ciudad
+          example: "Quito"
+        country:
+          type: string
+          minLength: 2
+          maxLength: 50
+          description: País
+          example: "Ecuador"
+
+    # BOOK SCHEMAS
+    Book:
+      type: object
+      required:
+        - id
+        - title
+        - author
+        - isbn
+        - publishedYear
+        - genre
+        - libraryId
+      properties:
+        id:
+          type: integer
+          description: ID único del libro
+          example: 1
+        title:
+          type: string
+          description: Título del libro
+          example: "Cien Años de Soledad"
+        author:
+          type: string
+          description: Autor del libro
+          example: "Gabriel García Márquez"
+        isbn:
+          type: string
+          description: Código ISBN del libro
+          pattern: '^978-\d{10}$'
+          example: "978-0307474728"
+        publishedYear:
+          type: integer
+          description: Año de publicación
+          minimum: 1000
+          maximum: 2100
+          example: 1967
+        genre:
+          type: string
+          description: Género literario del libro
+          example: "Realismo mágico"
+        libraryId:
+          type: integer
+          description: ID de la biblioteca a la que pertenece el libro
+          example: 1
+
+    BookInput:
+      type: object
+      required:
+        - title
+        - author
+        - isbn
+        - publishedYear
+        - genre
+        - libraryId
+      properties:
+        title:
+          type: string
+          minLength: 1
+          maxLength: 200
+          description: Título del libro
+          example: "El Principito"
+        author:
+          type: string
+          minLength: 2
+          maxLength: 100
+          description: Autor del libro
+          example: "Antoine de Saint-Exupéry"
+        isbn:
+          type: string
+          pattern: '^978-\d{10}$'
+          description: Código ISBN (formato 978-XXXXXXXXXX)
+          example: "978-0156012195"
+        publishedYear:
+          type: integer
+          minimum: 1000
+          maximum: 2100
+          description: Año de publicación
+          example: 1943
+        genre:
+          type: string
+          minLength: 2
+          maxLength: 50
+          description: Género literario
+          example: "Fábula"
+        libraryId:
+          type: integer
+          minimum: 1
+          description: ID de la biblioteca (debe existir)
+          example: 1
+
+    # ERROR SCHEMA
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Tipo de error
+          example: "Not Found"
+        message:
+          type: string
+          description: Descripción detallada del error
+          example: "La biblioteca con ID 999 no existe"
+        statusCode:
+          type: integer
+          description: Código de estado HTTP
+          example: 404

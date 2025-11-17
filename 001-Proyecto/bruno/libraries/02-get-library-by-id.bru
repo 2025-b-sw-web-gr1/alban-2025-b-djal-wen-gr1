@@ -1,0 +1,54 @@
+meta {
+  name: Get Library By ID
+  type: http
+  seq: 2
+}
+
+get {
+  url: https://jsonplaceholder.typicode.com/users/1
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+}
+
+docs {
+  # Obtener Biblioteca por ID
+  
+  Este endpoint retorna una biblioteca específica basada en su ID.
+  
+  ## Path Parameters
+  - `id` (integer, required): ID de la biblioteca
+  
+  ## Respuesta esperada
+  - Status: 200 OK
+  - Body: Objeto Library
+  
+  ## Ejemplo de respuesta
+  ```json
+  {
+    "id": 1,
+    "name": "Biblioteca Central",
+    "address": "Av. Principal 123",
+    "city": "Quito",
+    "country": "Ecuador"
+  }
+  ```
+  
+  ## Errores posibles
+  - 404 Not Found: Si la biblioteca no existe
+}
+
+tests {
+  test("Status code is 200", function() {
+    expect(res.status).to.equal(200);
+  });
+  
+  test("Response has required fields", function() {
+    expect(res.body).to.have.property('id');
+    expect(res.body).to.have.property('name');
+    expect(res.body).to.have.property('address');
+  });
+}

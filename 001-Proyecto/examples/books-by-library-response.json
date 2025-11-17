@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "title": "Cien Años de Soledad",
+    "author": "Gabriel García Márquez",
+    "isbn": "978-0307474728",
+    "publishedYear": 1967,
+    "genre": "Realismo mágico",
+    "libraryId": 1
+  },
+  {
+    "id": 2,
+    "title": "Don Quijote de la Mancha",
+    "author": "Miguel de Cervantes",
+    "isbn": "978-8424936464",
+    "publishedYear": 1605,
+    "genre": "Novela",
+    "libraryId": 1
+  },
+  {
+    "id": 3,
+    "title": "El Principito",
+    "author": "Antoine de Saint-Exupéry",
+    "isbn": "978-0156012195",
+    "publishedYear": 1943,
+    "genre": "Fábula",
+    "libraryId": 1
+  }
+]

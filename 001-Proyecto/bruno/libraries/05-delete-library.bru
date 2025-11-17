@@ -1,0 +1,44 @@
+meta {
+  name: Delete Library
+  type: http
+  seq: 5
+}
+
+delete {
+  url: https://jsonplaceholder.typicode.com/users/1
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+}
+
+docs {
+  # Eliminar Biblioteca
+  
+  Este endpoint elimina una biblioteca por su ID.
+  
+  ⚠️ **IMPORTANTE**: Solo se puede eliminar una biblioteca si NO tiene libros asociados.
+  
+  ## Path Parameters
+  - `id` (integer, required): ID de la biblioteca a eliminar
+  
+  ## Respuesta esperada
+  - Status: 204 No Content
+  - Body: Vacío
+  
+  ## Errores posibles
+  - 400 Bad Request: La biblioteca tiene libros asociados
+  - 404 Not Found: La biblioteca no existe
+  
+  ## Flujo recomendado
+  1. Primero eliminar todos los libros de la biblioteca
+  2. Luego eliminar la biblioteca
+}
+
+tests {
+  test("Status code is 204", function() {
+    expect(res.status).to.equal(204);
+  });
+}

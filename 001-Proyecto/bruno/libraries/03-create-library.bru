@@ -1,0 +1,74 @@
+meta {
+  name: Create Library
+  type: http
+  seq: 3
+}
+
+post {
+  url: https://jsonplaceholder.typicode.com/users
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  Accept: application/json
+}
+
+body:json {
+  {
+    "name": "Biblioteca Nacional del Ecuador",
+    "address": "Av. 6 de Diciembre y Patria",
+    "city": "Quito",
+    "country": "Ecuador"
+  }
+}
+
+docs {
+  # Crear Nueva Biblioteca
+  
+  Este endpoint crea una nueva biblioteca en el sistema.
+  
+  ## Request Body (JSON)
+  ```json
+  {
+    "name": "string (required, 3-100 chars)",
+    "address": "string (required, 5-200 chars)",
+    "city": "string (required, 2-50 chars)",
+    "country": "string (required, 2-50 chars)"
+  }
+  ```
+  
+  ## Respuesta esperada
+  - Status: 201 Created
+  - Body: Objeto Library con ID asignado
+  
+  ## Ejemplo de respuesta
+  ```json
+  {
+    "id": 3,
+    "name": "Biblioteca Nacional del Ecuador",
+    "address": "Av. 6 de Diciembre y Patria",
+    "city": "Quito",
+    "country": "Ecuador"
+  }
+  ```
+  
+  ## Errores posibles
+  - 400 Bad Request: Datos inválidos o incompletos
+}
+
+tests {
+  test("Status code is 201", function() {
+    expect(res.status).to.equal(201);
+  });
+  
+  test("Response has id", function() {
+    expect(res.body).to.have.property('id');
+    expect(res.body.id).to.be.a('number');
+  });
+  
+  test("Response matches request", function() {
+    expect(res.body.name).to.equal("Biblioteca Nacional del Ecuador");
+  });
+}

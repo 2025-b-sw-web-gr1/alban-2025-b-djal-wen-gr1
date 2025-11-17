@@ -1,0 +1,63 @@
+meta {
+  name: Update Library
+  type: http
+  seq: 4
+}
+
+put {
+  url: https://jsonplaceholder.typicode.com/users/1
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  Accept: application/json
+}
+
+body:json {
+  {
+    "name": "Biblioteca Central Actualizada",
+    "address": "Av. Principal 123 - Edificio Nuevo",
+    "city": "Quito",
+    "country": "Ecuador"
+  }
+}
+
+docs {
+  # Actualizar Biblioteca
+  
+  Este endpoint actualiza todos los campos de una biblioteca existente.
+  
+  ## Path Parameters
+  - `id` (integer, required): ID de la biblioteca a actualizar
+  
+  ## Request Body (JSON)
+  Todos los campos son requeridos:
+  ```json
+  {
+    "name": "string (required)",
+    "address": "string (required)",
+    "city": "string (required)",
+    "country": "string (required)"
+  }
+  ```
+  
+  ## Respuesta esperada
+  - Status: 200 OK
+  - Body: Objeto Library actualizado
+  
+  ## Errores posibles
+  - 400 Bad Request: Datos inválidos
+  - 404 Not Found: Biblioteca no existe
+}
+
+tests {
+  test("Status code is 200", function() {
+    expect(res.status).to.equal(200);
+  });
+  
+  test("Response reflects update", function() {
+    expect(res.body.name).to.include("Actualizada");
+  });
+}

@@ -1,0 +1,83 @@
+meta {
+  name: Create Book
+  type: http
+  seq: 4
+}
+
+post {
+  url: https://jsonplaceholder.typicode.com/posts
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  Accept: application/json
+}
+
+body:json {
+  {
+    "title": "El Principito",
+    "body": "Un libro sobre un pequeño príncipe que viaja por el universo",
+    "userId": 1
+  }
+}
+
+tests {
+  test("Status code is 201", function() {
+    expect(res.status).to.equal(201);
+  });
+  
+  test("Response has id", function() {
+    expect(res.body).to.have.property('id');
+    expect(res.body.id).to.be.a('number');
+  });
+  
+  test("Response matches request", function() {
+    expect(res.body.title).to.equal("El Principito");
+    expect(res.body.libraryId).to.equal(1);
+  });
+}
+
+docs {
+  # Crear Nuevo Libro
+  
+  Este endpoint crea un nuevo libro y lo asocia a una biblioteca existente.
+  
+  ## Request Body (JSON)
+  ```json
+  {
+    "title": "string (required, 1-200 chars)",
+    "author": "string (required, 2-100 chars)",
+    "isbn": "string (required, formato: 978-XXXXXXXXXX)",
+    "publishedYear": "integer (required, 1000-2100)",
+    "genre": "string (required, 2-50 chars)",
+    "libraryId": "integer (required, debe existir)"
+  }
+  ```
+  
+  ## Respuesta esperada
+  - Status: 201 Created
+  - Body: Objeto Book con ID asignado
+  
+  ## Ejemplo de respuesta
+  ```json
+  {
+    "id": 3,
+    "title": "El Principito",
+    "author": "Antoine de Saint-Exupéry",
+    "isbn": "978-0156012195",
+    "publishedYear": 1943,
+    "genre": "Fábula",
+    "libraryId": 1
+  }
+  ```
+  
+  ## Errores posibles
+  - 400 Bad Request: Datos inválidos, ISBN incorrecto, o libraryId no existe
+  
+  ## Validaciones
+  - El ISBN debe seguir el formato 978-XXXXXXXXXX
+  - La biblioteca (libraryId) debe existir en el sistema
+  - El año debe estar entre 1000 y 2100
+}

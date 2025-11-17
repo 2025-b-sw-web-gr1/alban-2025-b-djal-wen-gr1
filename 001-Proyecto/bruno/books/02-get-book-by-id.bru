@@ -1,0 +1,57 @@
+meta {
+  name: Get Book By ID
+  type: http
+  seq: 2
+}
+
+get {
+  url: https://jsonplaceholder.typicode.com/posts/1
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+}
+
+docs {
+  # Obtener Libro por ID
+  
+  Este endpoint retorna un libro específico basado en su ID.
+  
+  ## Path Parameters
+  - `id` (integer, required): ID del libro
+  
+  ## Respuesta esperada
+  - Status: 200 OK
+  - Body: Objeto Book
+  
+  ## Ejemplo de respuesta
+  ```json
+  {
+    "id": 1,
+    "title": "Cien Años de Soledad",
+    "author": "Gabriel García Márquez",
+    "isbn": "978-0307474728",
+    "publishedYear": 1967,
+    "genre": "Realismo mágico",
+    "libraryId": 1
+  }
+  ```
+  
+  ## Errores posibles
+  - 404 Not Found: Si el libro no existe
+}
+
+tests {
+  test("Status code is 200", function() {
+    expect(res.status).to.equal(200);
+  });
+  
+  test("Response has required fields", function() {
+    expect(res.body).to.have.property('id');
+    expect(res.body).to.have.property('title');
+    expect(res.body).to.have.property('author');
+    expect(res.body).to.have.property('libraryId');
+  });
+}

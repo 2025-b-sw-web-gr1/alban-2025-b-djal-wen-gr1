@@ -1,0 +1,41 @@
+meta {
+  name: Delete Book
+  type: http
+  seq: 6
+}
+
+delete {
+  url: https://jsonplaceholder.typicode.com/posts/1
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+}
+
+docs {
+  # Eliminar Libro
+  
+  Este endpoint elimina un libro por su ID.
+  
+  ## Path Parameters
+  - `id` (integer, required): ID del libro a eliminar
+  
+  ## Respuesta esperada
+  - Status: 204 No Content
+  - Body: Vacío
+  
+  ## Errores posibles
+  - 404 Not Found: El libro no existe
+  
+  ## Nota
+  A diferencia de las bibliotecas, los libros pueden eliminarse libremente
+  ya que no tienen dependencias.
+}
+
+tests {
+  test("Status code is 204", function() {
+    expect(res.status).to.equal(204);
+  });
+}

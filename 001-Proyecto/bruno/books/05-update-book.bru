@@ -1,0 +1,68 @@
+meta {
+  name: Update Book
+  type: http
+  seq: 5
+}
+
+put {
+  url: https://jsonplaceholder.typicode.com/posts/1
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  Accept: application/json
+}
+
+body:json {
+  {
+    "id": 1,
+    "title": "Cien Años de Soledad - Edición Especial",
+    "body": "Una obra maestra del realismo mágico",
+    "userId": 1
+  }
+}
+
+docs {
+  # Actualizar Libro
+  
+  Este endpoint actualiza todos los campos de un libro existente.
+  
+  ## Path Parameters
+  - `id` (integer, required): ID del libro a actualizar
+  
+  ## Request Body (JSON)
+  Todos los campos son requeridos:
+  ```json
+  {
+    "title": "string (required)",
+    "author": "string (required)",
+    "isbn": "string (required, formato 978-XXXXXXXXXX)",
+    "publishedYear": "integer (required)",
+    "genre": "string (required)",
+    "libraryId": "integer (required, debe existir)"
+  }
+  ```
+  
+  ## Respuesta esperada
+  - Status: 200 OK
+  - Body: Objeto Book actualizado
+  
+  ## Errores posibles
+  - 400 Bad Request: Datos inválidos o libraryId no existe
+  - 404 Not Found: Libro no existe
+  
+  ## Nota
+  Puedes cambiar el libraryId para mover el libro a otra biblioteca
+}
+
+tests {
+  test("Status code is 200", function() {
+    expect(res.status).to.equal(200);
+  });
+  
+  test("Response reflects update", function() {
+    expect(res.body.title).to.include("Edición Especial");
+  });
+}

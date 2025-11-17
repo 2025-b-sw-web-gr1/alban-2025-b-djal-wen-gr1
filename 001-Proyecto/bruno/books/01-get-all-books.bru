@@ -1,0 +1,65 @@
+meta {
+  name: Get All Books
+  type: http
+  seq: 1
+}
+
+get {
+  url: https://jsonplaceholder.typicode.com/posts
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+}
+
+docs {
+  # Obtener Todos los Libros
+  
+  Este endpoint retorna una lista completa de todos los libros registrados en el sistema.
+  
+  ## Respuesta esperada
+  - Status: 200 OK
+  - Body: Array de objetos Book
+  
+  ## Ejemplo de respuesta
+  ```json
+  [
+    {
+      "id": 1,
+      "title": "Cien Años de Soledad",
+      "author": "Gabriel García Márquez",
+      "isbn": "978-0307474728",
+      "publishedYear": 1967,
+      "genre": "Realismo mágico",
+      "libraryId": 1
+    },
+    {
+      "id": 2,
+      "title": "Don Quijote de la Mancha",
+      "author": "Miguel de Cervantes",
+      "isbn": "978-8424936464",
+      "publishedYear": 1605,
+      "genre": "Novela",
+      "libraryId": 1
+    }
+  ]
+  ```
+}
+
+tests {
+  test("Status code is 200", function() {
+    expect(res.status).to.equal(200);
+  });
+  
+  test("Response is an array", function() {
+    expect(Array.isArray(res.body)).to.be.true;
+  });
+  
+  test("Each book has libraryId", function() {
+    if (res.body.length > 0) {
+      expect(res.body[0]).to.have.property('libraryId');
+    }
+  });
+}

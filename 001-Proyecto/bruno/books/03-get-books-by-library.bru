@@ -1,0 +1,78 @@
+meta {
+  name: Get Books By Library
+  type: http
+  seq: 3
+}
+
+get {
+  url: https://jsonplaceholder.typicode.com/users/1/posts
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+}
+
+docs {
+  # Obtener Libros de una Biblioteca
+  
+  Este endpoint retorna todos los libros que pertenecen a una biblioteca específica.
+  **Este es el endpoint clave que demuestra la relación 1 a muchos.**
+  
+  ## Path Parameters
+  - `id` (integer, required): ID de la biblioteca
+  
+  ## Respuesta esperada
+  - Status: 200 OK
+  - Body: Array de objetos Book (todos con el mismo libraryId)
+  
+  ## Ejemplo de respuesta
+  ```json
+  [
+    {
+      "id": 1,
+      "title": "Cien Años de Soledad",
+      "author": "Gabriel García Márquez",
+      "isbn": "978-0307474728",
+      "publishedYear": 1967,
+      "genre": "Realismo mágico",
+      "libraryId": 1
+    },
+    {
+      "id": 2,
+      "title": "Don Quijote de la Mancha",
+      "author": "Miguel de Cervantes",
+      "isbn": "978-8424936464",
+      "publishedYear": 1605,
+      "genre": "Novela",
+      "libraryId": 1
+    }
+  ]
+  ```
+  
+  ## Errores posibles
+  - 404 Not Found: Si la biblioteca no existe
+  
+  ## Nota
+  Si la biblioteca existe pero no tiene libros, retorna un array vacío []
+}
+
+tests {
+  test("Status code is 200", function() {
+    expect(res.status).to.equal(200);
+  });
+  
+  test("Response is an array", function() {
+    expect(Array.isArray(res.body)).to.be.true;
+  });
+  
+  test("All books belong to the same library", function() {
+    if (res.body.length > 0) {
+      const libraryId = res.body[0].libraryId;
+      res.body.forEach(book => {
+        expect(book.libraryId).to.equal(libraryId);
+      });
+    }
+  });
+}
